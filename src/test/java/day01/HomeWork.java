@@ -57,23 +57,24 @@ public class HomeWork extends SeleniumTest {
     @Test
     public void testFrameworkWithChrome() {
 
+        final String pageTitle = "Index Page";
+
         //8. Assert Browser title
-        Assert.assertEquals(driver.getTitle(), "Index Page");
+        assertTitleEquals(pageTitle);
 
         //9. Perform login
-        final WebElement elementToggle = driver.findElement(By.className("uui-profile-menu"));
-        elementToggle.click();
+        clickOnElementWithAttribute("uui-profile-menu", By::className);
         fillElement("Login");
         fillElement("Password");
-        final WebElement elementSubmit = driver.findElement(By.className("btn-login"));
-        elementSubmit.click();
+        clickOnElementWithAttribute("btn-login", By::className);
 
         //10. Assert User name in the left-top side of screen that user is logged in
-        final WebElement elementPhoto = driver.findElement(By.className("profile-photo"));
-        assertElementText(elementPhoto,"span", By::tagName);
+        assertElementTextEquals("span",
+                                  By::tagName,
+                                  driver.findElement(By.className("profile-photo")));
 
         //11. Assert Browser title
-        Assert.assertEquals(driver.getTitle(), "Index Page");
+        assertTitleEquals(pageTitle);
 
         //12. Assert that there are 4 images on the Home Page and they are displayed
         int benefitsCount = 4;
@@ -95,8 +96,8 @@ public class HomeWork extends SeleniumTest {
         }
 
         //14. Assert that there are the main header and the text below it on the Home Page
-        assertElementText(driver,"main-title", By::className);
-        assertElementText(driver,"main-txt", By::className);
+        assertElementTextEquals("main-title", By::className);
+        assertElementTextEquals("main-txt", By::className);
     }
 
     @AfterClass
