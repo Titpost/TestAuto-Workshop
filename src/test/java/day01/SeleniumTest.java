@@ -5,31 +5,36 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-/**
- * @author Titov on 10.01.2018
- */
+//6. Create a new test in a new Java class, specify test name in accordance with checking functionality
 public class SeleniumTest {
 
+    private WebDriver driver;
+
+    @BeforeTest
+    void init() {
+        //1. Browser - Chrome
+        driver = new ChromeDriver();
+        //2. Window - maximized
+        driver.manage().window().maximize();
+    }
+
+    //3. All code should be formatted by functional blocks separated by functionality and meaning
     @Test
     public void testFrameworkWithChrome() {
 
-        //1 create new
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().fullscreen();
-
-        //2 go to tested page
+        //7. Open test site by URL
         driver.navigate().to("https://jdi-framework.github.io/tests");
 
-        //3 check title
+        //8. Assert Browser title
         Assert.assertEquals(driver.getTitle(), "Index Page");
 
-        //4 drop down login-form
+        //9. Perform login
         WebElement elementToggle = driver.findElement(By.className("uui-profile-menu"));
         elementToggle.click();
-
-        //5 find login/password form and authenticate
         WebElement elementLogin = driver.findElement(By.id("Login"));
         elementLogin.sendKeys("epam");
         WebElement elementPassword = driver.findElement(By.id("Password"));
@@ -37,12 +42,19 @@ public class SeleniumTest {
         WebElement elementSubmit = driver.findElement(By.className("btn-login"));
         elementSubmit.click();
 
-        //6 check if user name is correctly displayed
-        WebElement elementFoto = driver.findElement(By.className("profile-photo"));
-        WebElement elementUserName = elementFoto.findElement(By.tagName("span"));
+        //10. Assert User name in the left-top side of screen that user is loggined
+        WebElement elementPhoto = driver.findElement(By.className("profile-photo"));
+        WebElement elementUserName = elementPhoto.findElement(By.tagName("span"));
+        String userName = elementUserName.getText();
+        Assert.assertEquals("PITER CHAILOVSKII", userName);
 
+        //11. Assert Browser title
+        Assert.assertEquals(driver.getTitle(), "Index Page");
+    }
 
-    //    driver.close();
+    @AfterTest
+    void close() {
+        //    driver.close();
     }
 }
 
