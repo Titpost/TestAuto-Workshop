@@ -9,6 +9,8 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 //6. Create a new test in a new Java class, specify test name in accordance with checking functionality
 public class SeleniumTest {
 
@@ -50,6 +52,20 @@ public class SeleniumTest {
 
         //11. Assert Browser title
         Assert.assertEquals(driver.getTitle(), "Index Page");
+
+        //12. Assert that there are 4 images on the Home Page and they are displayed
+        List<WebElement> benefitImages = driver.findElements(By.className("benefit-icon"));
+        Assert.assertEquals(benefitImages.size(), 4);
+        for (WebElement img : benefitImages) {
+            Assert.assertTrue(img.isDisplayed());
+        }
+
+        //13. Assert that there are 4 texts on the Home Page and check them by getting texts
+        List<WebElement> benefitTexts = driver.findElements(By.className("benefit-txt"));
+        Assert.assertEquals(benefitTexts.size(), 4);
+        for (WebElement txt : benefitTexts) {
+            Assert.assertTrue(txt.isDisplayed());
+        }
     }
 
     @AfterTest
