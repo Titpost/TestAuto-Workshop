@@ -8,22 +8,49 @@
     <artifactId>TestAutoArtifact</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <dependencies>
+    <properties>
+        <java.version>1.8</java.version>
+        <org.mapstruct.version>1.2.0.Final</org.mapstruct.version>
+        <org.projectlombok>1.16.18</org.projectlombok>
+        <junit>4.12</junit>
+        <org.postgresql>42.1.4</org.postgresql>
+        <org.springframework.boot>1.3.3.RELEASE</org.springframework.boot>
+        <maven-compiler-plugin>3.5.1</maven-compiler-plugin>
+        <org.springframework.boot>1.5.8.RELEASE</org.springframework.boot>
+        <net.sourceforge.nekohtml>1.9.21</net.sourceforge.nekohtml>
+        <log4j>1.2.17</log4j>
+        <org.springframework.security>4.0.0.RELEASE</org.springframework.security>
+        <maven-checkstyle-plugin>2.17</maven-checkstyle-plugin>
+    </properties>
 
+
+    <dependencies>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.13.1</version>
         </dependency>
-
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>3.8.1</version>
         </dependency>
-
-
     </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>
