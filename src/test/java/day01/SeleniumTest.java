@@ -34,9 +34,13 @@ public class SeleniumTest {
         elementLogin.sendKeys("epam");
         WebElement elementPassword = driver.findElement(By.id("Password"));
         elementPassword.sendKeys("1234");
-
         WebElement elementSubmit = driver.findElement(By.className("btn-login"));
         elementSubmit.click();
+
+        //6 check if user name is correctly displayed
+        WebElement elementFoto = driver.findElement(By.className("profile-photo"));
+        WebElement elementUserName = elementFoto.findElement(By.tagName("span"));
+
 
     //    driver.close();
     }
