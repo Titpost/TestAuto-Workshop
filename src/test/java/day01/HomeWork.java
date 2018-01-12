@@ -88,7 +88,7 @@ public class HomeWork extends SeleniumTest {
         final List<WebElement> benefitTexts = driver.findElements(By.className("benefit-txt"));
         Assert.assertEquals(benefitTexts.size(), benefitsCount);
         for (byte i = 0; i < benefitsCount; i++) {
-            Assert.assertTrue( benefitTexts.get(i).isDisplayed());
+            Assert.assertTrue(benefitTexts.get(i).isDisplayed());
             Assert.assertEquals(
                     benefitTexts.get(i).getText(),
                     texts.get("benefit-txt" + i)

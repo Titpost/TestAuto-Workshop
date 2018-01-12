@@ -28,8 +28,8 @@ class SeleniumTest {
     }
 
     /**
-     * Asserts if element's (within context) text equals to the value from map (by element's attribute).
-     * @param value - name of attribute to find by
+     * Asserts if element's (within context) text equals to the value from map (by element's attribute value).
+     * @param value - name of attribute to look for
      * @param finder - corresponding "By" method
      * @param context to look in
      */
@@ -39,8 +39,8 @@ class SeleniumTest {
     }
 
     /**
-     * Asserts if element's (within driver-context) text equals to the value from map (by element's attribute).
-     * @param value of attribute to find by
+     * Asserts if element's (within driver-context) text equals to the value from map (by element's attribute value).
+     * @param value of attribute to look for
      * @param finder - corresponding "By"-method
      */
     void assertElementTextEquals(String value, Function<String, By> finder) {
@@ -49,8 +49,8 @@ class SeleniumTest {
     }
 
     /**
-     * Clicks on element
-     * @param value of attribute to find by
+     * Clicks on element.
+     * @param value of attribute to look for
      * @param finder - corresponding "By"-method
      */
     void clickOnElementWithAttribute(String value, Function<String, By> finder) {
@@ -59,7 +59,7 @@ class SeleniumTest {
     }
 
     /**
-     * Asserts if page title equals to the passed value
+     * Asserts if page title equals to the passed value.
      * @param value of title to compare to
      */
     void assertTitleEquals(String value) {
