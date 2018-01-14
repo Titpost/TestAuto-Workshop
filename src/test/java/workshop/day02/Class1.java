@@ -1,17 +1,23 @@
-package day01;
+package workshop.day02;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import workshop.SeleniumTest;
 
 import java.util.List;
 
 //6. Create a new test in a new Java class, specify test name in accordance with checking functionality
-public class HomeWork extends SeleniumTest {
+public class Class1 extends SeleniumTest {
 
-    @BeforeTest
+    @BeforeSuite
     void setTexts () {
         texts.put("Login", "epam");
         texts.put("Password", "1234");
@@ -47,20 +53,31 @@ public class HomeWork extends SeleniumTest {
         driver.manage().window().maximize();
     }
 
+    @AfterClass
+    void close() {
+        //15. Close Browser
+        driver.close();
+    }
 
     //3. All code should be formatted by functional blocks separated by functionality and meaning
-    @BeforeMethod
+    @BeforeTest
     public void navigate() {
         //7. Open test site by URL
         driver.navigate().to("https://jdi-framework.github.io/tests");
     }
+
+
     @Test
-    public void testFrameworkWithChrome() {
+    public void test1() {
 
         final String pageTitle = "Index Page";
 
         //8. Assert Browser title
         assertTitleEquals(pageTitle);
+    }
+
+    @Test
+    public void test2() {
 
         //9. Perform login
         clickOnElementWithAttribute("uui-profile-menu", By::className);
@@ -70,11 +87,8 @@ public class HomeWork extends SeleniumTest {
 
         //10. Assert User name in the left-top side of screen that user is logged in
         assertElementTextEquals("span",
-                                  By::tagName,
-                                  driver.findElement(By.className("profile-photo")));
-
-        //11. Assert Browser title
-        assertTitleEquals(pageTitle);
+                By::tagName,
+                driver.findElement(By.className("profile-photo")));
 
         //12. Assert that there are 4 images on the Home Page and they are displayed
         int benefitsCount = 4;
@@ -94,16 +108,13 @@ public class HomeWork extends SeleniumTest {
                     texts.get("benefit-txt" + i)
             );
         }
+    }
 
+    @Test
+    public void test3() {
         //14. Assert that there are the main header and the text below it on the Home Page
         assertElementTextEquals("main-title", By::className);
         assertElementTextEquals("main-txt", By::className);
-    }
-
-    @AfterClass
-    void close() {
-        //15. Close Browser
-        driver.close();
     }
 }
 
