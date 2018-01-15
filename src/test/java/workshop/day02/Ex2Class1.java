@@ -12,7 +12,7 @@ import java.util.List;
 //6. Create a new test in a new Java class, specify test name in accordance with checking functionality
 public class Ex2Class1 extends SeleniumTest {
 
-    @BeforeSuite(groups  = {"Regression"})
+    @BeforeSuite(groups  = {"Smoke"})
     void setTexts () {
         texts.put("Login", "epam");
         texts.put("Password", "1234");
@@ -40,27 +40,27 @@ public class Ex2Class1 extends SeleniumTest {
     }
 
 
-    @BeforeTest(groups  = {"Regression"})
+    @BeforeTest(groups  = {"Smoke"})
     void openBrowser() {
         //1. Browser - Chrome
         driver = new ChromeDriver();
     }
 
-    @AfterTest(groups  = {"Regression"})
+    @AfterTest(groups  = {"Smoke"})
     void close() {
         //15. Close Browser
         driver.close();
     }
 
     //3. All code should be formatted by functional blocks separated by functionality and meaning
-    @BeforeClass(groups  = {"Regression"})
+    @BeforeClass(groups  = {"Smoke"})
     public void navigate() {
         //7. Open test site by URL
         driver.navigate().to("https://jdi-framework.github.io/tests");
     }
 
 
-    @Test(groups  = {"Regression"})
+    @Test(groups  = {"Smoke"})
     public void test1() {
 
         final String pageTitle = "Index Page";
@@ -69,7 +69,7 @@ public class Ex2Class1 extends SeleniumTest {
         assertTitleEquals(pageTitle);
     }
 
-    @Test(groups  = {"Regression"})
+    @Test(groups  = {"Smoke"})
     public void test2() {
 
         //12. Assert that there are 4 images on the Home Page and they are displayed
@@ -78,7 +78,7 @@ public class Ex2Class1 extends SeleniumTest {
         Assert.assertEquals(benefitImages.size(), benefitsCount);
     }
 
-    @Test(groups  = {"Regression"})
+    @Test(groups  = {"Smoke"})
     public void test3() {
         //14. Assert that there are the main header and the text below it on the Home Page
         assertElementTextEquals("main-title", By::className);
