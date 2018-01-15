@@ -4,20 +4,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import workshop.SeleniumTest;
 
 import java.util.List;
 
 //6. Create a new test in a new Java class, specify test name in accordance with checking functionality
-public class Class1 extends SeleniumTest {
+public class Ex2Class1 extends SeleniumTest {
 
-    @BeforeSuite
+    @BeforeSuite(groups  = {"Regression"})
     void setTexts () {
         texts.put("Login", "epam");
         texts.put("Password", "1234");
@@ -45,29 +40,27 @@ public class Class1 extends SeleniumTest {
     }
 
 
-    @BeforeClass
+    @BeforeTest(groups  = {"Regression"})
     void openBrowser() {
         //1. Browser - Chrome
         driver = new ChromeDriver();
-        //2. Window - maximized
-        driver.manage().window().maximize();
     }
 
-    @AfterClass
+    @AfterTest(groups  = {"Regression"})
     void close() {
         //15. Close Browser
         driver.close();
     }
 
     //3. All code should be formatted by functional blocks separated by functionality and meaning
-    @BeforeTest
+    @BeforeClass(groups  = {"Regression"})
     public void navigate() {
         //7. Open test site by URL
         driver.navigate().to("https://jdi-framework.github.io/tests");
     }
 
 
-    @Test
+    @Test(groups  = {"Regression"})
     public void test1() {
 
         final String pageTitle = "Index Page";
@@ -76,41 +69,16 @@ public class Class1 extends SeleniumTest {
         assertTitleEquals(pageTitle);
     }
 
-    @Test
+    @Test(groups  = {"Regression"})
     public void test2() {
-
-        //9. Perform login
-        clickOnElementWithAttribute("uui-profile-menu", By::className);
-        fillElement("Login");
-        fillElement("Password");
-        clickOnElementWithAttribute("btn-login", By::className);
-
-        //10. Assert User name in the left-top side of screen that user is logged in
-        assertElementTextEquals("span",
-                By::tagName,
-                driver.findElement(By.className("profile-photo")));
 
         //12. Assert that there are 4 images on the Home Page and they are displayed
         int benefitsCount = 4;
         final List<WebElement> benefitImages = driver.findElements(By.className("benefit-icon"));
         Assert.assertEquals(benefitImages.size(), benefitsCount);
-        for (WebElement img : benefitImages) {
-            Assert.assertTrue(img.isDisplayed());
-        }
-
-        //13. Assert that there are 4 texts on the Home Page and check them by getting texts
-        final List<WebElement> benefitTexts = driver.findElements(By.className("benefit-txt"));
-        Assert.assertEquals(benefitTexts.size(), benefitsCount);
-        for (byte i = 0; i < benefitsCount; i++) {
-            Assert.assertTrue(benefitTexts.get(i).isDisplayed());
-            Assert.assertEquals(
-                    benefitTexts.get(i).getText(),
-                    texts.get("benefit-txt" + i)
-            );
-        }
     }
 
-    @Test
+    @Test(groups  = {"Regression"})
     public void test3() {
         //14. Assert that there are the main header and the text below it on the Home Page
         assertElementTextEquals("main-title", By::className);

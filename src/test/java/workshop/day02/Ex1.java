@@ -15,7 +15,7 @@ import static org.testng.AssertJUnit.fail;
 /**
  * @author Titov on 14.01.2018
  */
-public class Exercise1 extends SeleniumTest {
+public class Ex1 extends SeleniumTest {
 
     @BeforeTest
     void openBrowser() {
@@ -75,6 +75,12 @@ public class Exercise1 extends SeleniumTest {
         );
     }
 
+    /**
+     * Predicate to check is element presents in another element.
+     * @param icon - name of element class to be contained
+     * @param context - parent element
+     * @return - true if contained
+     */
     private boolean containsIcon(String icon, WebElement context) {
         try {
             context.findElement(By.className(icon));
