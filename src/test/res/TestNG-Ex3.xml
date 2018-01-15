@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="day 2" verbose="1" >
+
+    <test name="Ex3">
+        <classes>
+            <class name="workshop.day02.Ex3">
+            </class>
+        </classes>
+    </test>
+
+</suite>
