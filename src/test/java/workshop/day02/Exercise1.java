@@ -4,13 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import workshop.SeleniumTest;
 
 import java.util.List;
@@ -23,21 +17,21 @@ import static org.testng.AssertJUnit.fail;
  */
 public class Exercise1 extends SeleniumTest {
 
-    @BeforeClass
+    @BeforeTest
     void openBrowser() {
         // Browser - Chrome
         driver = new ChromeDriver();
     }
 
-    @BeforeTest
-    public void navigate() {
-        driver.navigate().to("https://jdi-framework.github.io/tests/index.htm");
-    }
-
-    @AfterClass
+    @AfterTest
     void close() {
         // Close Browser
         driver.close();
+    }
+
+    @BeforeClass
+    public void navigate() {
+        driver.navigate().to("https://jdi-framework.github.io/tests/index.htm");
     }
 
     @DataProvider
@@ -64,7 +58,7 @@ public class Exercise1 extends SeleniumTest {
         // find a benefit with the specified icon
         Optional<WebElement> benefit = benefits.stream()
                 .filter(
-                        (b) -> b.findElement(By.className(icon)) != null)
+                        (b) -> containsIcon(icon, b))
                 .findFirst();
 
         // benefit for this icon must present
@@ -73,10 +67,20 @@ public class Exercise1 extends SeleniumTest {
         }
 
         // assert text for the this icon
-        WebElement elementText = benefit.get().findElement(By.className(text));
+        WebElement elementText = benefit.get().findElement(By.className("benefit-txt"));
+        String str = elementText.getText();
         Assert.assertEquals(
                 elementText.getText(),
                 text
         );
+    }
+
+    private boolean containsIcon(String icon, WebElement context) {
+        try {
+            context.findElement(By.className(icon));
+        } catch (Exception ex) {
+            return false;
+        }
+        return true;
     }
 }
