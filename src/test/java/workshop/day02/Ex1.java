@@ -68,7 +68,6 @@ public class Ex1 extends SeleniumTest {
 
         // assert text for the this icon
         WebElement elementText = benefit.get().findElement(By.className("benefit-txt"));
-        String str = elementText.getText();
         Assert.assertEquals(
                 elementText.getText(),
                 text
