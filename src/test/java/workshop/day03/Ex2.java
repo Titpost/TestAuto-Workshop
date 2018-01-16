@@ -44,7 +44,7 @@ public class Ex2 extends SeleniumTest {
         //1. Browser - Chrome
         driver = new ChromeDriver();
         //2. Window - maximized
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
     }
 
 
@@ -57,7 +57,7 @@ public class Ex2 extends SeleniumTest {
     @Test
     public void loginPage() {
 
-        LoginPage indexPage = PageFactory.initElements(driver, LoginPage.class);
+        LoginPage indexPage = LoginPage.getInstance(driver);
 
         final String pageTitle = "Index Page";
 
