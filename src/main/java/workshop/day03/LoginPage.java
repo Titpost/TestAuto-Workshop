@@ -1,11 +1,15 @@
 package workshop.day03;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 public class LoginPage {
+
+    private WebDriver driver;
 
     /**
      * Class Factory.
@@ -13,8 +17,11 @@ public class LoginPage {
      * @return Page Object
      */
     public static LoginPage getInstance(WebDriver driver) {
-        return PageFactory.initElements(driver, LoginPage.class);
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.driver = driver;
+        return loginPage;
     }
+
 
     @FindBy(className = "uui-profile-menu")
     private WebElement uuiProfileMenu;
@@ -31,12 +38,6 @@ public class LoginPage {
     @FindBy(id = "Password")
     private WebElement passwordEdit;
 
-    private WebDriver driver;
-
-    LoginPage() {}
-    LoginPage(WebDriver driver) {
-        this.driver = driver;
-    }
 
 
     /**
@@ -55,6 +56,11 @@ public class LoginPage {
 
         // submit
         btnLogin.click();
+    }
+
+    void checkLoggedAs(String name) {
+        final WebElement element = profilePhoto.findElement(By.tagName("span"));
+        Assert.assertEquals(name, element.getText());
     }
 
     void assertTextByClass(String text, String className) {

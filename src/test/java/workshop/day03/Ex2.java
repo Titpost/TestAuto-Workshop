@@ -3,7 +3,6 @@ package workshop.day03;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import workshop.SeleniumTest;
@@ -15,7 +14,6 @@ public class Ex2 extends SeleniumTest {
 
     @BeforeTest
     void setTexts () {
-        texts.put("span", "PITER CHAILOVSKII");
         texts.put("main-title", "EPAM FRAMEWORK WISHES…");
 
         texts.put("main-txt", "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR " +
@@ -44,7 +42,7 @@ public class Ex2 extends SeleniumTest {
         //1. Browser - Chrome
         driver = new ChromeDriver();
         //2. Window - maximized
-        //driver.manage().window().maximize();
+        driver.manage().window().maximize();
     }
 
 
@@ -68,9 +66,7 @@ public class Ex2 extends SeleniumTest {
         indexPage.login("epam", "1234");
 
         //10. Assert User name in the left-top side of screen that user is logged in
-        assertElementTextEquals("span",
-                                  By::tagName,
-                                  driver.findElement(By.className("profile-photo")));
+        indexPage.checkLoggedAs("PITER CHAILOVSKII");
 
         //11. Assert Browser title
         assertTitleEquals(pageTitle);
