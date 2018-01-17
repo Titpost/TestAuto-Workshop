@@ -13,6 +13,7 @@ public class LoginPage {
 
     /**
      * Class Factory.
+     *
      * @param driver - Selenium WebDriver
      * @return Page Object
      */
@@ -39,10 +40,10 @@ public class LoginPage {
     private WebElement passwordEdit;
 
 
-
     /**
      * Performs authentication.
-     * @param name - user name
+     *
+     * @param name     - user name
      * @param password - user password
      */
     void login(String name, String password) {

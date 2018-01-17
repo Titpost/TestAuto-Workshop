@@ -13,7 +13,7 @@ import java.util.List;
 public class Ex2 extends SeleniumTest {
 
     @BeforeTest
-    void setTexts () {
+    void setTexts() {
         texts.put("main-title", "EPAM FRAMEWORK WISHES…");
 
         texts.put("main-txt", "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR " +
@@ -52,6 +52,7 @@ public class Ex2 extends SeleniumTest {
         //7. Open test site by URL
         driver.navigate().to("https://jdi-framework.github.io/tests");
     }
+
     @Test
     public void loginPage() {
 
