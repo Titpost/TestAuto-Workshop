@@ -52,7 +52,7 @@ public class Ex2 {
         loginPage.checkImagesAreDisplayed();
 
         //13. Assert that there are 4 texts on the Home Page and check them by getting texts
-        loginPage.checkTextsUnderImages("benefit-txt", IndexPageTextsEnum.values());
+        loginPage.checkTextsUnderImages(IndexPageTextsEnum.values());
 
         //14. Assert that there are the main header and the text below it on the Home Page
         loginPage.checkMainTitle("EPAM FRAMEWORK WISHES…");

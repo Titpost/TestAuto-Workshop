@@ -47,6 +47,9 @@ public class LoginPage {
     @FindBy(className = "benefit-icon")
     private List<WebElement> benefitIcons;
 
+    @FindBy(className = "benefit-txt")
+    private List<WebElement> benefitTexts;
+
     @FindBy(id = "Login")
     private WebElement loginEdit;
 
@@ -122,8 +125,7 @@ public class LoginPage {
      *
      * @param texts array
      */
-    public void checkTextsUnderImages(String className, IndexPageTextsEnum[] texts) {
-        final List<WebElement> benefitTexts = driver.findElements(By.className(className));
+    public void checkTextsUnderImages(IndexPageTextsEnum[] texts) {
         for (byte i = 0; i < texts.length; i++) {
             assertEquals(
                     texts[i].text,
