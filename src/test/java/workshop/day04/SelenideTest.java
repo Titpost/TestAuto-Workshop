@@ -1,5 +1,6 @@
 package workshop.day04;
 
+import enums.LoginPageIconsTextsEnum;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -22,5 +23,7 @@ public class SelenideTest {
         selenidePage.login("epam", "1234");
 
         selenidePage.checkProfileName("Piter Chailovskii");
+
+        selenidePage.checkIconsWithTexts(LoginPageIconsTextsEnum.values());
     }
 }
