@@ -3,17 +3,27 @@ package workshop.day01;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.*;
-import workshop.SeleniumTest;
+import workshop.SeleniumBase;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 //6. Create a new test in a new Java class, specify test name in accordance with checking functionality
-public class HomeWork extends SeleniumTest {
+public class HomeWork extends SeleniumBase {
+
+    private HashMap<String, String> texts = new HashMap<>();
+
+    protected Map<String, String> texts() {
+        return texts;
+    }
 
     @BeforeTest
-    void setTexts () {
+    void setTexts() {
         texts.put("Login", "epam");
         texts.put("Password", "1234");
         texts.put("span", "PITER CHAILOVSKII");
@@ -24,19 +34,14 @@ public class HomeWork extends SeleniumTest {
                 "ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT " +
                 "IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
 
-        texts.put("benefit-txt0", "To include good practices\n" +
-                "and ideas from successful\n" +
-                "EPAM projec");
+        texts.put("benefit-txt0", "To include good practices and ideas from successful EPAM projec");
 
-        texts.put("benefit-txt1", "To be flexible and\n" +
-                "customizable");
+        texts.put("benefit-txt1", "To be flexible and customizable");
 
         texts.put("benefit-txt2", "To be multiplatform");
 
-        texts.put("benefit-txt3", "Already have good base\n" +
-                "(about 20 internal and\n" +
-                "some external projects),\n" +
-                "wish to get more…");
+        texts.put("benefit-txt3", "Already have good base (about 20 internal and " +
+                "some external projects), wish to get more…");
     }
 
 
@@ -55,6 +60,7 @@ public class HomeWork extends SeleniumTest {
         //7. Open test site by URL
         driver.navigate().to("https://jdi-framework.github.io/tests");
     }
+
     @Test
     public void testFrameworkWithChrome() {
 
@@ -71,8 +77,8 @@ public class HomeWork extends SeleniumTest {
 
         //10. Assert User name in the left-top side of screen that user is logged in
         assertElementTextEquals("span",
-                                  By::tagName,
-                                  driver.findElement(By.className("profile-photo")));
+                By::tagName,
+                driver.findElement(By.className("profile-photo")));
 
         //11. Assert Browser title
         assertTitleEquals(pageTitle);
@@ -80,18 +86,18 @@ public class HomeWork extends SeleniumTest {
         //12. Assert that there are 4 images on the Home Page and they are displayed
         final int benefitsCount = 4;
         final List<WebElement> benefitImages = driver.findElements(By.className("benefit-icon"));
-        Assert.assertEquals(benefitImages.size(), benefitsCount);
+        assertEquals(benefitImages.size(), benefitsCount);
         for (WebElement img : benefitImages) {
-            Assert.assertTrue(img.isDisplayed());
+            assertTrue(img.isDisplayed());
         }
 
         //13. Assert that there are 4 texts on the Home Page and check them by getting texts
         final List<WebElement> benefitTexts = driver.findElements(By.className("benefit-txt"));
-        Assert.assertEquals(benefitTexts.size(), benefitsCount);
+        assertEquals(benefitTexts.size(), benefitsCount);
         for (byte i = 0; i < benefitsCount; i++) {
-            Assert.assertTrue(benefitTexts.get(i).isDisplayed());
-            Assert.assertEquals(
-                    benefitTexts.get(i).getText(),
+            assertTrue(benefitTexts.get(i).isDisplayed());
+            assertEquals(
+                    benefitTexts.get(i).getText().replaceAll("\\r\\n|\\r|\\n", " "),
                     texts.get("benefit-txt" + i)
             );
         }

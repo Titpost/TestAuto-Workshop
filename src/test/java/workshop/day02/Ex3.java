@@ -5,27 +5,36 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import workshop.SeleniumTest;
+import workshop.SeleniumBase;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static java.lang.System.setProperty;
 
 //6. Create a new test in a new Java class, specify test name in accordance with checking functionality
-public class Ex3 extends SeleniumTest {
+public class Ex3 extends SeleniumBase {
+
+    private HashMap<String, String> texts = new HashMap<>();
+
+    protected Map<String, String> texts() {
+        return texts;
+    }
 
     @BeforeSuite
-    void beforeSuit () {
+    void beforeSuit() {
         setProperty("webdriver.chrome.driver", "chromedriver.exe");
     }
+
     @AfterSuite
-    void afterSuite () {
+    void afterSuite() {
         //15. Close Browser
         driver.close();
     }
 
-    @BeforeClass
-    void setTexts () {
+    @BeforeTest
+    void setTexts() {
         texts.put("Login", "epam");
         texts.put("Password", "1234");
         texts.put("span", "PITER CHAILOVSKII");
@@ -59,6 +68,7 @@ public class Ex3 extends SeleniumTest {
         //2. Window - maximized
         driver.manage().window().maximize();
     }
+
     @AfterTest
     void close() {
         System.out.println(driver.getTitle());
@@ -70,10 +80,11 @@ public class Ex3 extends SeleniumTest {
         //7. Open test site by URL
         driver.navigate().to("https://jdi-framework.github.io/tests");
 
-        if(driver.toString().contains("null")) {
+        if (driver.toString().contains("null")) {
             driver.quit();
         }
     }
+
     @AfterMethod
     public void afterMethod() {
         System.out.println(System.currentTimeMillis());
@@ -96,8 +107,8 @@ public class Ex3 extends SeleniumTest {
 
         //10. Assert User name in the left-top side of screen that user is logged in
         assertElementTextEquals("span",
-                                  By::tagName,
-                                  driver.findElement(By.className("profile-photo")));
+                By::tagName,
+                driver.findElement(By.className("profile-photo")));
 
         //11. Assert Browser title
         assertTitleEquals(pageTitle);

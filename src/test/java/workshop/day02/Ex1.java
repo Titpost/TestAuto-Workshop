@@ -1,21 +1,23 @@
 package workshop.day02;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import workshop.SeleniumTest;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.testng.AssertJUnit.fail;
 
 /**
  * @author Titov on 14.01.2018
  */
-public class Ex1 extends SeleniumTest {
+public class Ex1 {
+
+    private WebDriver driver;
 
     @BeforeTest
     void openBrowser() {
@@ -37,15 +39,10 @@ public class Ex1 extends SeleniumTest {
     @DataProvider
     private Object[][] db() {
         return new Object[][]{
-                {"icon-practise", "To include good practices\n" +
-                        "and ideas from successful\n" +
-                        "EPAM projec"},
-                {"icon-custom", "To be flexible and\ncustomizable"},
+                {"icon-practise", "To include good practices and ideas from successful EPAM projec"},
+                {"icon-custom", "To be flexible and customizable"},
                 {"icon-multi", "To be multiplatform"},
-                {"icon-base", "Already have good base\n" +
-                        "(about 20 internal and\n" +
-                        "some external projects),\n" +
-                        "wish to get more…"}
+                {"icon-base", "Already have good base (about 20 internal and some external projects), wish to get more…"}
         };
     }
 
@@ -53,22 +50,19 @@ public class Ex1 extends SeleniumTest {
     public void testFrameworkWithChrome(String icon, String text) {
 
         // find all the benefits
-        final List<WebElement> benefits = driver.findElements(By.className("benefit"));
-
-        // find a benefit with the specified icon
-        Optional<WebElement> benefit = benefits.stream()
+        List<WebElement> benefits = driver.findElements(By.className("benefit")).stream()
                 .filter((b) -> containsIcon(icon, b))
-                .findFirst();
+                .collect(Collectors.toList());
 
         // benefit for this icon must present
-        if (!benefit.isPresent()) {
+        if (null == benefits.get(0)) {
             fail("benefit icon is missing: " + icon);
         }
 
         // assert text for the this icon
-        WebElement elementText = benefit.get().findElement(By.className("benefit-txt"));
+        WebElement elementText = benefits.get(0).findElement(By.className("benefit-txt"));
         Assert.assertEquals(
-                elementText.getText(),
+                elementText.getText().replaceAll("\\r\\n|\\r|\\n", " "),
                 text
         );
     }

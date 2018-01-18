@@ -50,7 +50,7 @@ public class Ex2 {
         loginPage.checkTitleEquals(pageTitle);
 
         //12. Assert that there are 4 images on the Home Page and they are displayed
-        loginPage.checkImagesAreDisplayed("benefit-icon");
+        loginPage.checkImagesAreDisplayed();
 
         //13. Assert that there are 4 texts on the Home Page and check them by getting texts
         loginPage.checkTextsUnderImages("benefit-txt", IndexPageTextsEnum.values());

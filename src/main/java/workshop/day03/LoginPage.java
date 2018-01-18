@@ -44,6 +44,9 @@ public class LoginPage {
     @FindBy(className = "profile-photo")
     private WebElement profilePhoto;
 
+    @FindBy(className = "benefit-icon")
+    private List<WebElement> benefitIcons;
+
     @FindBy(id = "Login")
     private WebElement loginEdit;
 
@@ -108,9 +111,8 @@ public class LoginPage {
     /**
      * Checks if icons are shown.
      */
-    public void checkImagesAreDisplayed(String className) {
-        final List<WebElement> benefitImages = driver.findElements(By.className(className));
-        for (WebElement img : benefitImages) {
+    public void checkImagesAreDisplayed() {
+        for (WebElement img : benefitIcons) {
             assertTrue(img.isDisplayed());
         }
     }
@@ -123,8 +125,10 @@ public class LoginPage {
     public void checkTextsUnderImages(String className, IndexPageTextsEnum[] texts) {
         final List<WebElement> benefitTexts = driver.findElements(By.className(className));
         for (byte i = 0; i < texts.length; i++) {
-            assertEquals(texts[i].text,
-                    benefitTexts.get(i).getText().replaceAll("\\r\\n|\\r|\\n", " "));
+            assertEquals(
+                    texts[i].text,
+                    benefitTexts.get(i).getText().replaceAll("\\r\\n|\\r|\\n", " ")
+            );
         }
     }
 
@@ -139,6 +143,7 @@ public class LoginPage {
 
     /**
      * Checks main text
+     *
      * @param text to check
      */
     public void checkMainText(String text) {
