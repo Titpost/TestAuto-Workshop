@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 public class Ex2 {
 
     private WebDriver driver;
-    private LoginPage indexPage;
+    private LoginPage loginPage;
 
     @BeforeClass
     void openBrowser() {
@@ -22,14 +22,14 @@ public class Ex2 {
         //2. Window - maximized
         driver.manage().window().maximize();
 
-        indexPage = LoginPage.getInstance(driver);
+        loginPage = LoginPage.getInstance(driver);
     }
 
     //3. All code should be formatted by functional blocks separated by functionality and meaning
     @BeforeMethod
     public void navigate() {
         //7. Open test site by URL
-        indexPage.openPage("https://jdi-framework.github.io/tests");
+        loginPage.openPage("https://jdi-framework.github.io/tests");
     }
 
     @Test
@@ -38,26 +38,26 @@ public class Ex2 {
         final String pageTitle = "Index Page";
 
         //8. Assert Browser title
-        indexPage.assertTitleEquals(pageTitle);
+        loginPage.checkTitleEquals(pageTitle);
 
         //9. Perform login
-        indexPage.login("epam", "1234");
+        loginPage.login("epam", "1234");
 
         //10. Assert User name in the left-top side of screen that user is logged in
-        indexPage.checkLoggedAs("PITER CHAILOVSKII");
+        loginPage.checkLoggedAs("PITER CHAILOVSKII");
 
         //11. Assert Browser title
-        indexPage.assertTitleEquals(pageTitle);
+        loginPage.checkTitleEquals(pageTitle);
 
         //12. Assert that there are 4 images on the Home Page and they are displayed
-        indexPage.checkImagesAreDisplayed("benefit-icon");
+        loginPage.checkImagesAreDisplayed("benefit-icon");
 
         //13. Assert that there are 4 texts on the Home Page and check them by getting texts
-        indexPage.checkTextsUnderImages("benefit-txt", IndexPageTextsEnum.values());
+        loginPage.checkTextsUnderImages("benefit-txt", IndexPageTextsEnum.values());
 
         //14. Assert that there are the main header and the text below it on the Home Page
-        indexPage.checkMainTitle("EPAM FRAMEWORK WISHES…");
-        indexPage.checkMainText("LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR " +
+        loginPage.checkMainTitle("EPAM FRAMEWORK WISHES…");
+        loginPage.checkMainText("LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR " +
                 "INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION " +
                 "ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT " +
                 "IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
@@ -66,7 +66,7 @@ public class Ex2 {
     @AfterClass
     void close() {
         //15. Close Browser
-        indexPage.close();
+        loginPage.close();
     }
 }
 

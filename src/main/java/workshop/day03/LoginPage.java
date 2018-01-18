@@ -67,7 +67,6 @@ public class LoginPage {
         driver.close();
     }
 
-
     /**
      * Performs authentication.
      *
@@ -102,7 +101,7 @@ public class LoginPage {
      *
      * @param text for title.
      */
-    public void assertTitleEquals(String text) {
+    public void checkTitleEquals(String text) {
         assertEquals(driver.getTitle(), text);
     }
 
