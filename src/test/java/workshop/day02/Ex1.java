@@ -57,8 +57,7 @@ public class Ex1 extends SeleniumTest {
 
         // find a benefit with the specified icon
         Optional<WebElement> benefit = benefits.stream()
-                .filter(
-                        (b) -> containsIcon(icon, b))
+                .filter((b) -> containsIcon(icon, b))
                 .findFirst();
 
         // benefit for this icon must present
@@ -76,7 +75,8 @@ public class Ex1 extends SeleniumTest {
 
     /**
      * Predicate to check is element presents in another element.
-     * @param icon - name of element class to be contained
+     *
+     * @param icon    - name of element class to be contained
      * @param context - parent element
      * @return - true if contained
      */
