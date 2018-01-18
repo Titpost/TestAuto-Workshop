@@ -19,7 +19,6 @@ import static org.testng.Assert.assertTrue;
 //6. Create a new test in a new Java class, specify test name in accordance with checking functionality
 public class Ex2ClassForSmoke extends SeleniumBase {
 
-    private final int benefitsCount = 4;
     private HashMap<String, String> texts = new HashMap<>();
 
     protected Map<String, String> texts() {
@@ -70,7 +69,7 @@ public class Ex2ClassForSmoke extends SeleniumBase {
 
         //12. Assert that there are 4 images on the Home Page...
         final List<WebElement> benefitImages = driver.findElements(By.className("benefit-icon"));
-        assertEquals(benefitImages.size(), benefitsCount);
+        assertEquals(benefitImages.size(), 4);
     }
 
     @Test(groups = {"Smoke"})
