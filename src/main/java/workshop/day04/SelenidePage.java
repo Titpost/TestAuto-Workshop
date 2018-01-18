@@ -1,10 +1,16 @@
 package workshop.day04;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
+
+import java.util.Collections;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Page object for Selenide tests.
@@ -57,9 +63,13 @@ public class SelenidePage {
     }
 
     /**
-     * Checks if all the icons are present and texts beneath are correct.
+     * Checks if the icon is present and the text beneath is correct.
      */
-    public void checkIconsWithTexts(String icon, String text) {
+    public void checkIconWithText(String icon, String text) {
 
+        assertEquals(text, $$(".benefit").stream()
+                .filter(b -> b.$(icon) != null)
+                .findAny().get().$(".benefit-txt").getText().replaceAll("\\r\\n|\\r|\\n", " ")
+        );
     }
 }

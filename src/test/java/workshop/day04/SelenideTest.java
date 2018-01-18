@@ -22,5 +22,8 @@ public class SelenideTest {
         selenidePage.login("epam", "1234");
 
         selenidePage.checkProfileName("Piter Chailovskii");
+
+        selenidePage.checkIconWithText(".icon-practise",
+                "To include good practices and ideas from successful EPAM projec");
     }
 }
