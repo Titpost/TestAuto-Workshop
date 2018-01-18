@@ -12,13 +12,12 @@ import org.testng.annotations.Test;
 //6. Create a new test in a new Java class, specify test name in accordance with checking functionality
 public class Ex2 {
 
-    private WebDriver driver;
     private LoginPage loginPage;
 
     @BeforeClass
     void openBrowser() {
         //1. Browser - Chrome
-        driver = new ChromeDriver();
+        WebDriver driver = new ChromeDriver();
         //2. Window - maximized
         driver.manage().window().maximize();
 
@@ -50,7 +49,7 @@ public class Ex2 {
         loginPage.checkTitleEquals(pageTitle);
 
         //12. Assert that there are 4 images on the Home Page and they are displayed
-        loginPage.checkImagesAreDisplayed("benefit-icon");
+        loginPage.checkImagesAreDisplayed();
 
         //13. Assert that there are 4 texts on the Home Page and check them by getting texts
         loginPage.checkTextsUnderImages("benefit-txt", IndexPageTextsEnum.values());
