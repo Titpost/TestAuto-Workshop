@@ -65,11 +65,10 @@ public class SelenidePage {
     public void checkIconsWithTexts(LoginPageIconsTextsEnum[] benefits) {
         for(LoginPageIconsTextsEnum i : benefits) {
 
-            String text = $$(".benefit").stream()
-                .filter(b -> b.$(i.icon) != null)
-                .findAny().get().$(".benefit-txt").getText().replaceAll("\\r\\n|\\r|\\n", " ");
-            //);
-            continue;
+           assertEquals(i.text, $$(".benefit").stream()
+                .filter(b -> b.$(i.icon).exists())
+                .findFirst().get().$(".benefit-txt").getText().replaceAll("\\r\\n|\\r|\\n", " ")
+            );
         }
     }
 }
