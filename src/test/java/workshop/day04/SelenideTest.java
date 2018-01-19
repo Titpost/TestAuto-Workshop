@@ -1,5 +1,6 @@
 package workshop.day04;
 
+import enums.LoginPageIconsTextsEnum;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -23,7 +24,6 @@ public class SelenideTest {
 
         selenidePage.checkProfileName("Piter Chailovskii");
 
-        selenidePage.checkIconWithText(".icon-practise",
-                "To include good practices and ideas from successful EPAM projec");
+        selenidePage.checkIconsWithTexts(LoginPageIconsTextsEnum.values());
     }
 }

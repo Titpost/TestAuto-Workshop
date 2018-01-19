@@ -1,10 +1,7 @@
 package workshop.day04;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
-
-import java.util.Collections;
+import enums.LoginPageIconsTextsEnum;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
@@ -65,7 +62,7 @@ public class SelenidePage {
     /**
      * Checks if the icon is present and the text beneath is correct.
      */
-    public void checkIconWithText(String icon, String text) {
+    public void checkIconsWithTexts(LoginPageIconsTextsEnum[] benefits) {
 
         assertEquals(text, $$(".benefit").stream()
                 .filter(b -> b.$(icon) != null)
