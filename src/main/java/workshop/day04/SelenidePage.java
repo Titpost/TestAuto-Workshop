@@ -63,10 +63,13 @@ public class SelenidePage {
      * Checks if the icon is present and the text beneath is correct.
      */
     public void checkIconsWithTexts(LoginPageIconsTextsEnum[] benefits) {
+        for(LoginPageIconsTextsEnum i : benefits) {
 
-        assertEquals(text, $$(".benefit").stream()
-                .filter(b -> b.$(icon) != null)
-                .findAny().get().$(".benefit-txt").getText().replaceAll("\\r\\n|\\r|\\n", " ")
-        );
+            String text = $$(".benefit").stream()
+                .filter(b -> b.$(i.icon) != null)
+                .findAny().get().$(".benefit-txt").getText().replaceAll("\\r\\n|\\r|\\n", " ");
+            //);
+            continue;
+        }
     }
 }
