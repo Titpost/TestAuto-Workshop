@@ -1,6 +1,7 @@
 package workshop.day04;
 
 import com.codeborne.selenide.Configuration;
+import enums.LoginPageIconsTextsEnum;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
@@ -59,7 +60,7 @@ public class SelenidePage {
     /**
      * Checks if all the icons are present and texts beneath are correct.
      */
-    public void checkIconsWithTexts(String icon, String text) {
+    public void checkIconsWithTexts(LoginPageIconsTextsEnum[] benefits) {
 
     }
 }
