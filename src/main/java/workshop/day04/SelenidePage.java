@@ -97,14 +97,34 @@ public class SelenidePage {
      *
      * @param subItems to be contained
      */
-    public void checkSubMenuItemsExist(SubMenuServices[] subItems) {
+    public void checkHeaderSubMenuItemsExist(SubMenuServices[] subItems) {
+
+        final SelenideElement elementOpen = $(".dropdown");
+        elementOpen.$(".dropdown-toggle").click();
+        iterateToAssertPresence(elementOpen.$(".dropdown-menu"), subItems);
+    }
+
+    /**
+     * Checks if Left-section items are present.
+     *
+     * @param subItems to be contained
+     */
+    public void checkLeftSectionItemsExist(SubMenuServices[] subItems) {
 
         final SelenideElement elementMenu = $(".sub-menu");
         elementMenu.click();
+        iterateToAssertPresence(elementMenu.$(".sub"), subItems);
+    }
 
-        final SelenideElement elementSub = elementMenu.$(".sub");
-        for(SubMenuServices item : subItems) {
-            elementSub.shouldHave(text(item.text));
+    /**
+     * Asserts all the texts present in element.
+     *
+     * @param container - element to look for texts in
+     * @param subItems  - texts to find for
+     */
+    private void iterateToAssertPresence(SelenideElement container, SubMenuServices[] subItems) {
+        for (SubMenuServices item : subItems) {
+            container.shouldHave(text(item.text));
         }
     }
 }

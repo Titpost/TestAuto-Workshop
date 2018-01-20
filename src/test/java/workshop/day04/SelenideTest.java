@@ -34,6 +34,8 @@ public class SelenideTest {
                 "ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT " +
                 "IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
 
-        selenidePage.checkSubMenuItemsExist(SubMenuServices.values());
+        selenidePage.checkHeaderSubMenuItemsExist(SubMenuServices.values());
+
+        selenidePage.checkLeftSectionItemsExist(SubMenuServices.values());
     }
 }
