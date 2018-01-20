@@ -1,7 +1,9 @@
 package workshop.day04;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
 import enums.LoginPageIconsTextsEnum;
+import enums.SubMenuServices;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
@@ -63,12 +65,41 @@ public class SelenidePage {
      * Checks if the icon is present and the text beneath is correct.
      */
     public void checkIconsWithTexts(LoginPageIconsTextsEnum[] benefits) {
-        for(LoginPageIconsTextsEnum i : benefits) {
+        for (LoginPageIconsTextsEnum i : benefits) {
 
-           assertEquals(i.text, $$(".benefit").stream()
-                .filter(b -> b.$(i.icon).exists())
-                .findFirst().get().$(".benefit-txt").getText().replaceAll("\\r\\n|\\r|\\n", " ")
+            assertEquals(i.text, $$(".benefit").stream()
+                    .filter(b -> b.$(i.icon).exists())
+                    .findFirst().get().$(".benefit-txt").getText().replaceAll("\\r\\n|\\r|\\n", " ")
             );
+        }
+    }
+
+    /**
+     * Checks main page title.
+     *
+     * @param title text
+     */
+    public void checkMainTitle(String title) {
+        assertEquals($(".main-title").getText(), title);
+    }
+
+    /**
+     * Checks main text
+     *
+     * @param text to check
+     */
+    public void checkMainText(String text) {
+        assertEquals($(".main-txt").getText(), text);
+    }
+
+    public void checkSubMenuItemsExist(SubMenuServices[] subMenus) {
+
+        final SelenideElement subMenu = $(".sub-menu");
+        subMenu.click();
+
+        final SelenideElement items = subMenu.$(".sub");
+        for(SubMenuServices sub : subMenus) {
+            items.shouldHave(text(sub.text));
         }
     }
 }
