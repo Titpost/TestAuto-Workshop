@@ -92,14 +92,19 @@ public class SelenidePage {
         assertEquals($(".main-txt").getText(), text);
     }
 
-    public void checkSubMenuItemsExist(SubMenuServices[] subMenus) {
+    /**
+     * Checks if Service-menu items are present.
+     *
+     * @param subItems to be contained
+     */
+    public void checkSubMenuItemsExist(SubMenuServices[] subItems) {
 
-        final SelenideElement menuElement = $(".sub-menu");
-        menuElement.click();
+        final SelenideElement elementMenu = $(".sub-menu");
+        elementMenu.click();
 
-        final SelenideElement subElement = menuElement.$(".sub");
-        for(SubMenuServices sub : subMenus) {
-            subElement.shouldHave(text(sub.text));
+        final SelenideElement elementSub = elementMenu.$(".sub");
+        for(SubMenuServices item : subItems) {
+            elementSub.shouldHave(text(item.text));
         }
     }
 }
