@@ -2,20 +2,20 @@ package workshop.day04;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
-import enums.LoginPageIconsTextsEnum;
-import enums.SubMenuServices;
+import enums.loginPage.LoginPageIconsTextsEnum;
+import enums.loginPage.SubMenuServicesEnum;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
-import static enums.SubMenuServices.SERVICE_DIFFERENTELEMENTS;
+import static enums.loginPage.SubMenuServicesEnum.SERVICE_DIFFERENTELEMENTS;
 import static org.testng.Assert.assertEquals;
 
 /**
  * Page object for Selenide tests.
  */
-public class SelenidePage {
+public class LoginPage {
 
     final private SelenideElement elementDropdown;
 
@@ -25,18 +25,18 @@ public class SelenidePage {
      * @param pageUrl to be opened
      * @return new instance
      */
-    public static SelenidePage getInstance(String pageUrl) {
+    public static LoginPage getInstance(String pageUrl) {
 
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         Configuration.browser = "CHROME";
 
         open(pageUrl);
-        SelenidePage page = new SelenidePage();
+        LoginPage page = new LoginPage();
 
         return page;
     }
 
-    private SelenidePage() {
+    private LoginPage() {
         elementDropdown = $(".dropdown");
     }
 
@@ -99,7 +99,7 @@ public class SelenidePage {
      *
      * @param subItems to be contained
      */
-    public void checkHeaderSubMenuItemsExist(SubMenuServices[] subItems) {
+    public void checkHeaderSubMenuItemsExist(SubMenuServicesEnum[] subItems) {
         expandServicesMenu();
         iterateToAssertPresence(elementDropdown.$(".dropdown-menu"), subItems);
     }
@@ -109,7 +109,7 @@ public class SelenidePage {
      *
      * @param subItems to be contained
      */
-    public void checkLeftSectionItemsExist(SubMenuServices[] subItems) {
+    public void checkLeftSectionItemsExist(SubMenuServicesEnum[] subItems) {
         final SelenideElement elementMenu = $(".sub-menu");
         elementMenu.click();
         iterateToAssertPresence(elementMenu.$(".sub"), subItems);
@@ -118,12 +118,14 @@ public class SelenidePage {
     /**
      * Clicks menu item - SERVICE_DIFFERENTELEMENTS.
      */
-    public void checkDifferentElementsPage() {
+    public DifferentElementsPage gotoDifferentElementsPage() {
         expandServicesMenu();
         elementDropdown.$(".dropdown-menu").$$("li").stream()
                 .map(li -> li.$("a"))
                 .filter(a -> a.getText().contains(SERVICE_DIFFERENTELEMENTS.text.toUpperCase()))
                 .findFirst().get().click();
+
+        return new DifferentElementsPage();
     }
 
     /**
@@ -132,8 +134,8 @@ public class SelenidePage {
      * @param container - element to look for texts in
      * @param subItems  - texts to find for
      */
-    private void iterateToAssertPresence(SelenideElement container, SubMenuServices[] subItems) {
-        for (SubMenuServices item : subItems) {
+    private void iterateToAssertPresence(SelenideElement container, SubMenuServicesEnum[] subItems) {
+        for (SubMenuServicesEnum item : subItems) {
             container.shouldHave(text(item.text));
         }
     }

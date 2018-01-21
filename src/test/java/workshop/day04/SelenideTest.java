@@ -1,42 +1,44 @@
 package workshop.day04;
 
-import enums.LoginPageIconsTextsEnum;
-import enums.SubMenuServices;
+import enums.loginPage.LoginPageIconsTextsEnum;
+import enums.loginPage.SubMenuServicesEnum;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class SelenideTest {
 
-    private SelenidePage selenidePage;
+    private LoginPage loginPage;
 
     /**
      * Gets Object-Page instance.
      */
     @BeforeClass
     public void setUp() {
-        selenidePage = SelenidePage.getInstance("https://jdi-framework.github.io/tests");
+        loginPage = LoginPage.getInstance("https://jdi-framework.github.io/tests");
     }
 
     @Test
     public void login() {
 
-        selenidePage.login("epam", "1234");
+        loginPage.login("epam", "1234");
 
-        selenidePage.checkProfileName("Piter Chailovskii");
+        loginPage.checkProfileName("Piter Chailovskii");
 
-        selenidePage.checkIconsWithTexts(LoginPageIconsTextsEnum.values());
+        loginPage.checkIconsWithTexts(LoginPageIconsTextsEnum.values());
 
-        selenidePage.checkMainTitle("EPAM FRAMEWORK WISHES…");
+        loginPage.checkMainTitle("EPAM FRAMEWORK WISHES…");
 
-        selenidePage.checkMainText("LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR "
+        loginPage.checkMainText("LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR "
                 + "INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION "
                 + "ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT "
                 + "IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
 
-        selenidePage.checkHeaderSubMenuItemsExist(SubMenuServices.values());
+        loginPage.checkHeaderSubMenuItemsExist(SubMenuServicesEnum.values());
 
-        selenidePage.checkLeftSectionItemsExist(SubMenuServices.values());
+        loginPage.checkLeftSectionItemsExist(SubMenuServicesEnum.values());
 
-        selenidePage.checkDifferentElementsPage();
+        final DifferentElementsPage differentElementsPage = loginPage.gotoDifferentElementsPage();
+
+        differentElementsPage.checkElements();
     }
 }

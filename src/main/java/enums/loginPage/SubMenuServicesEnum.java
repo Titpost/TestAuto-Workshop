@@ -1,9 +1,7 @@
-package enums;
+package enums.loginPage;
 
-/**
- * @author Tit on 20.01.2018
- */
-public enum SubMenuServices {
+
+public enum SubMenuServicesEnum {
     SERVICE_SUPPORT("Support"),
     SERVICE_DATES("Dates"),
     SERVICE_COMPLEXTABLE("Complex Table"),
@@ -13,7 +11,7 @@ public enum SubMenuServices {
 
     public String text;
 
-    SubMenuServices(String text) {
+    SubMenuServicesEnum(String text) {
         this.text = text;
     }
 }

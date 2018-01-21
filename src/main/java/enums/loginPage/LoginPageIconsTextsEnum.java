@@ -1,4 +1,5 @@
-package enums;
+package enums.loginPage;
+
 
 public enum LoginPageIconsTextsEnum {
 
