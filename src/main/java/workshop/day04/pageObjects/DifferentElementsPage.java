@@ -18,6 +18,7 @@ import static enums.differentElementsPage.CheckboxLabelsEnum.CHECKBOXES_WIND;
 import static enums.differentElementsPage.DropdownColorsEnum.DROPDOWN_ITEM_YELLOW;
 import static enums.differentElementsPage.RadioLabelsEnum.RADIO_SELEN;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 
 public class DifferentElementsPage {
@@ -26,6 +27,7 @@ public class DifferentElementsPage {
     private final SelenideElement checkboxRow = mainContent.$(".checkbox-row", 0);
     private final SelenideElement radioRow = mainContent.$(".checkbox-row", 1);
     private final SelenideElement dropdown = mainContent.$(".uui-form-element");
+    private final SelenideElement rightPanel = $(".right-fix-panel");
 
     /**
      * Checks presence of the form elements.
@@ -53,7 +55,7 @@ public class DifferentElementsPage {
 
         // Left and Right sections
         $(".sidebar-menu").should(exist);
-        $(".mCSB_container").should(exist);
+        rightPanel.should(exist);
     }
 
     /**
@@ -91,5 +93,41 @@ public class DifferentElementsPage {
                 .findFirst().get().click();
 
         assertEquals(DROPDOWN_ITEM_YELLOW.color, dropdown.val());
+    }
+
+    /**
+     * Checks if logs contain all the element's selection activity
+     */
+    public void checkLogs() {
+        final List<String> logs = rightPanel.$(".info-panel-section").$("ul.logs").$$("li")
+                .stream()
+                .map(SelenideElement::getText)
+                .map(txt -> {
+                    if (txt.contains("Colors:")) {
+                        assertTrue(txt.endsWith(DROPDOWN_ITEM_YELLOW.color));
+                        return DROPDOWN_ITEM_YELLOW.color;
+                    } else
+                    if (txt.contains(CHECKBOXES_WIND.label)) {
+                        assertTrue(txt.endsWith("true"));
+                        return CHECKBOXES_WIND.label;
+                    } else
+                    if (txt.contains(CHECKBOXES_WATER.label)) {
+                        assertTrue(txt.endsWith("true"));
+                        return CHECKBOXES_WATER.label;
+                    } else
+                    if (txt.contains("metal:")) {
+                        assertTrue(txt.endsWith(RADIO_SELEN.label));
+                        return RADIO_SELEN.label;
+                    }
+                    else {
+                        return null;
+                    }
+                })
+                .collect(Collectors.toList());
+
+        assertTrue(logs.contains(DROPDOWN_ITEM_YELLOW.color));
+        assertTrue(logs.contains(CHECKBOXES_WIND.label));
+        assertTrue(logs.contains(CHECKBOXES_WATER.label));
+        assertTrue(logs.contains(RADIO_SELEN.label));
     }
 }

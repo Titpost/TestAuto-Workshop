@@ -51,5 +51,7 @@ public class SelenideTest {
         differentElementsPage.checkRadioSelection();
 
         differentElementsPage.checkDropdownSelection();
+
+        differentElementsPage.checkLogs();
     }
 }
