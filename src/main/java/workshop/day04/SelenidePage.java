@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
+import static enums.SubMenuServices.SERVICE_DIFFERENTELEMENTS;
 import static org.testng.Assert.assertEquals;
 
 /**
@@ -16,26 +17,27 @@ import static org.testng.Assert.assertEquals;
  */
 public class SelenidePage {
 
+    final private SelenideElement elementDropdown;
+
     /**
-     * Factory method.
+     * Factory method. Opens page by URL.
      *
+     * @param pageUrl to be opened
      * @return new instance
      */
-    public static SelenidePage getInstance() {
+    public static SelenidePage getInstance(String pageUrl) {
 
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         Configuration.browser = "CHROME";
 
-        return new SelenidePage();
+        open(pageUrl);
+        SelenidePage page = new SelenidePage();
+
+        return page;
     }
 
-    /**
-     * Opens page by URL.
-     *
-     * @param pageUrl to be opened
-     */
-    public void openPage(String pageUrl) {
-        open(pageUrl);
+    private SelenidePage() {
+        elementDropdown = $(".dropdown");
     }
 
     /**
@@ -98,10 +100,8 @@ public class SelenidePage {
      * @param subItems to be contained
      */
     public void checkHeaderSubMenuItemsExist(SubMenuServices[] subItems) {
-
-        final SelenideElement elementOpen = $(".dropdown");
-        elementOpen.$(".dropdown-toggle").click();
-        iterateToAssertPresence(elementOpen.$(".dropdown-menu"), subItems);
+        expandServicesMenu();
+        iterateToAssertPresence(elementDropdown.$(".dropdown-menu"), subItems);
     }
 
     /**
@@ -110,10 +110,17 @@ public class SelenidePage {
      * @param subItems to be contained
      */
     public void checkLeftSectionItemsExist(SubMenuServices[] subItems) {
-
         final SelenideElement elementMenu = $(".sub-menu");
         elementMenu.click();
         iterateToAssertPresence(elementMenu.$(".sub"), subItems);
+    }
+
+    public void checkDifferentElementsPage() {
+        expandServicesMenu();
+        elementDropdown.$(".dropdown-menu").$$("li").stream()
+                .map(li -> li.$("a"))
+                .filter(a -> a.getText().contains(SERVICE_DIFFERENTELEMENTS.text.toUpperCase()))
+                .findFirst().get().click();
     }
 
     /**
@@ -126,5 +133,9 @@ public class SelenidePage {
         for (SubMenuServices item : subItems) {
             container.shouldHave(text(item.text));
         }
+    }
+
+    private void expandServicesMenu() {
+        elementDropdown.$(".dropdown-toggle").click();
     }
 }

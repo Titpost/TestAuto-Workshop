@@ -14,12 +14,11 @@ public class SelenideTest {
      */
     @BeforeClass
     public void setUp() {
-        selenidePage = SelenidePage.getInstance();
+        selenidePage = SelenidePage.getInstance("https://jdi-framework.github.io/tests");
     }
 
     @Test
     public void login() {
-        selenidePage.openPage("https://jdi-framework.github.io/tests");
 
         selenidePage.login("epam", "1234");
 
@@ -29,13 +28,15 @@ public class SelenideTest {
 
         selenidePage.checkMainTitle("EPAM FRAMEWORK WISHES…");
 
-        selenidePage.checkMainText("LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR " +
-                "INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION " +
-                "ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT " +
-                "IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
+        selenidePage.checkMainText("LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR "
+                + "INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION "
+                + "ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT "
+                + "IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
 
         selenidePage.checkHeaderSubMenuItemsExist(SubMenuServices.values());
 
         selenidePage.checkLeftSectionItemsExist(SubMenuServices.values());
+
+        selenidePage.checkDifferentElementsPage();
     }
 }
