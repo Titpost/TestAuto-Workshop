@@ -115,6 +115,9 @@ public class SelenidePage {
         iterateToAssertPresence(elementMenu.$(".sub"), subItems);
     }
 
+    /**
+     * Clicks menu item - SERVICE_DIFFERENTELEMENTS.
+     */
     public void checkDifferentElementsPage() {
         expandServicesMenu();
         elementDropdown.$(".dropdown-menu").$$("li").stream()
@@ -135,6 +138,9 @@ public class SelenidePage {
         }
     }
 
+    /**
+     * Clicks on menu dropdown-toggle to expand
+     */
     private void expandServicesMenu() {
         elementDropdown.$(".dropdown-toggle").click();
     }
