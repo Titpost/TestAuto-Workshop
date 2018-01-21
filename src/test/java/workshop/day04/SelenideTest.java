@@ -4,6 +4,8 @@ import enums.loginPage.LoginPageIconsTextsEnum;
 import enums.loginPage.SubMenuServicesEnum;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import workshop.day04.pageObjects.DifferentElementsPage;
+import workshop.day04.pageObjects.LoginPage;
 
 public class SelenideTest {
 
@@ -17,6 +19,9 @@ public class SelenideTest {
         loginPage = LoginPage.getInstance("https://jdi-framework.github.io/tests");
     }
 
+    /**
+     * Pages main test.
+     */
     @Test
     public void login() {
 
@@ -40,5 +45,7 @@ public class SelenideTest {
         final DifferentElementsPage differentElementsPage = loginPage.gotoDifferentElementsPage();
 
         differentElementsPage.checkElements();
+
+        differentElementsPage.checkCheckboxSelection();
     }
 }

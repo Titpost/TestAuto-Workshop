@@ -1,10 +1,11 @@
-package workshop.day04;
+package workshop.day04.pageObjects;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import enums.loginPage.LoginPageIconsTextsEnum;
 import enums.loginPage.SubMenuServicesEnum;
 
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -60,7 +61,7 @@ public class LoginPage {
      * @param name of user to be displayed
      */
     public void checkProfileName(String name) {
-        $(".profile-photo span").shouldHave(text(name));
+        $(".profile-photo span").shouldHave(exactText(name));
     }
 
     /**
