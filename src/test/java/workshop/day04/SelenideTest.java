@@ -53,5 +53,7 @@ public class SelenideTest {
         differentElementsPage.checkDropdownSelection();
 
         differentElementsPage.checkLogs();
+
+        differentElementsPage.checkUnselection();
     }
 }

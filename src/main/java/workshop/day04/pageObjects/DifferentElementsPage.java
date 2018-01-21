@@ -28,9 +28,10 @@ public class DifferentElementsPage {
     private final SelenideElement radioRow = mainContent.$(".checkbox-row", 1);
     private final SelenideElement dropdown = mainContent.$(".uui-form-element");
     private final SelenideElement rightPanel = $(".right-fix-panel");
+    private final SelenideElement logsSection = rightPanel.$(".info-panel-section").$("ul.logs");
 
     /**
-     * Checks presence of the form elements.
+     * Check presence of the form elements.
      */
     public void checkElements() {
 
@@ -62,11 +63,7 @@ public class DifferentElementsPage {
      * Click 2 checkboxes and assert they got checked
      */
     public void checkCheckboxSelection() {
-        checkboxRow.$$(".label-checkbox").stream()
-                .filter(l -> l.getText().contains(CHECKBOXES_WATER.label) ||
-                             l.getText().contains(CHECKBOXES_WIND.label))
-                .forEach(l -> l.$("input").click());
-
+        clickCheckboxes();
         assertEquals(2, checkboxRow.$$("input:checked").size());
     }
 
@@ -96,30 +93,25 @@ public class DifferentElementsPage {
     }
 
     /**
-     * Checks if logs contain all the element's selection activity
+     * Check if logs contain all the element's selection activity
      */
     public void checkLogs() {
-        final List<String> logs = rightPanel.$(".info-panel-section").$("ul.logs").$$("li")
-                .stream()
+        final List<String> logs = logsSection.$$("li").stream()
                 .map(SelenideElement::getText)
                 .map(txt -> {
                     if (txt.contains("Colors:")) {
                         assertTrue(txt.endsWith(DROPDOWN_ITEM_YELLOW.color));
                         return DROPDOWN_ITEM_YELLOW.color;
-                    } else
-                    if (txt.contains(CHECKBOXES_WIND.label)) {
+                    } else if (txt.contains(CHECKBOXES_WIND.label)) {
                         assertTrue(txt.endsWith("true"));
                         return CHECKBOXES_WIND.label;
-                    } else
-                    if (txt.contains(CHECKBOXES_WATER.label)) {
+                    } else if (txt.contains(CHECKBOXES_WATER.label)) {
                         assertTrue(txt.endsWith("true"));
                         return CHECKBOXES_WATER.label;
-                    } else
-                    if (txt.contains("metal:")) {
+                    } else if (txt.contains("metal:")) {
                         assertTrue(txt.endsWith(RADIO_SELEN.label));
                         return RADIO_SELEN.label;
-                    }
-                    else {
+                    } else {
                         return null;
                     }
                 })
@@ -129,5 +121,28 @@ public class DifferentElementsPage {
         assertTrue(logs.contains(CHECKBOXES_WIND.label));
         assertTrue(logs.contains(CHECKBOXES_WATER.label));
         assertTrue(logs.contains(RADIO_SELEN.label));
+    }
+
+    /**
+     * Click 2 checkboxes and assert they got unchecked
+     */
+    public void checkUnselection() {
+        clickCheckboxes();
+        assertEquals(0, checkboxRow.$$("input:checked").size());
+        assertEquals(2, logsSection.$$("li").stream()
+                .map(SelenideElement::getText)
+                .filter(txt -> (txt.contains(CHECKBOXES_WIND.label) || txt.contains(CHECKBOXES_WATER.label))
+                        && txt.endsWith("false")).count()
+        );
+    }
+
+    /**
+     * Click on WIND and WATER checkboxes
+     */
+    private void clickCheckboxes() {
+        checkboxRow.$$(".label-checkbox").stream()
+                .filter(l -> l.getText().contains(CHECKBOXES_WATER.label) ||
+                             l.getText().contains(CHECKBOXES_WIND.label))
+                .forEach(l -> l.$("input").click());
     }
 }
