@@ -1,16 +1,16 @@
 package enums.differentElementsPage;
 
 
-public enum CheckBoxesEnum {
+public enum CheckboxLabelsEnum {
 
     CHECKBOXES_WATER("Water"),
     CHECKBOXES_EARTH("Earth"),
     CHECKBOXES_WIND("Wind"),
     CHECKBOXES_FIRE("Fire");
 
-    public String element;
+    public String label;
 
-    CheckBoxesEnum(String element) {
-        this.element = element;
+    CheckboxLabelsEnum(String label) {
+        this.label = label;
     }
 }
