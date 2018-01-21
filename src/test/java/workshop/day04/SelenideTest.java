@@ -47,5 +47,9 @@ public class SelenideTest {
         differentElementsPage.checkElements();
 
         differentElementsPage.checkCheckboxSelection();
+
+        differentElementsPage.checkRadioSelection();
+
+        differentElementsPage.checkDropdownSelection();
     }
 }
