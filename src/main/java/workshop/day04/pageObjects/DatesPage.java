@@ -3,17 +3,22 @@ package workshop.day04.pageObjects;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.support.FindBy;
 
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 import static org.openqa.selenium.Keys.ARROW_LEFT;
 import static org.openqa.selenium.Keys.ARROW_RIGHT;
 
 public class DatesPage {
 
-    private final SelenideElement sliders = $(".uui-slider");
-    private final SelenideElement leftSlider = sliders.$(".ui-slider-handle", 0);
-    private final SelenideElement rightSlider = sliders.$(".ui-slider-handle", 1);
+    @FindBy(css = ".uui-slider")
+    private SelenideElement sliders;
+
+    @FindBy(css = ".ui-slider-handle:nth-of-type(1)")
+    private SelenideElement leftSlider;
+
+    @FindBy(css = ".ui-slider-handle:nth-of-type(2)")
+    private SelenideElement rightSlider;
 
     /**
      * Factory method
