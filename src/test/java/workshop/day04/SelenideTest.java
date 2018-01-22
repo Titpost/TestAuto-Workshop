@@ -20,8 +20,6 @@ public class SelenideTest {
     @BeforeClass
     public void setUp() {
         loginPage = LoginPage.getInstance("https://jdi-framework.github.io/tests");
-        differentElementsPage = DifferentElementsPage.getInstance();
-        datesPage = DatesPage.getInstance();
     }
 
     /**
@@ -48,6 +46,7 @@ public class SelenideTest {
         loginPage.checkLeftSectionItemsExist(SubMenuServicesEnum.values());
 
         loginPage.gotoDifferentElementsPage();
+        differentElementsPage = DifferentElementsPage.getInstance();
 
         differentElementsPage.checkElements();
 
@@ -62,6 +61,7 @@ public class SelenideTest {
         differentElementsPage.checkUnselection();
 
         differentElementsPage.gotoDatesPage();
+        datesPage = DatesPage.getInstance();
 
         datesPage.checkSlidersAside();
 

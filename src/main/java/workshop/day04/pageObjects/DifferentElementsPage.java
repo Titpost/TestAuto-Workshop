@@ -13,6 +13,7 @@ import static com.codeborne.selenide.CollectionCondition.exactTexts;
 import static com.codeborne.selenide.Condition.checked;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.page;
 import static enums.differentElementsPage.CheckboxLabelsEnum.CHECKBOXES_WATER;
 import static enums.differentElementsPage.CheckboxLabelsEnum.CHECKBOXES_WIND;
 import static enums.differentElementsPage.DropdownColorsEnum.DROPDOWN_ITEM_YELLOW;
@@ -34,10 +35,10 @@ public class DifferentElementsPage {
     /**
      * Factory method
      *
-     * @return new instance
+     * @return new page object instance
      */
     public static DifferentElementsPage getInstance() {
-        return new DifferentElementsPage();
+        return page(DifferentElementsPage.class);
     }
 
     /**

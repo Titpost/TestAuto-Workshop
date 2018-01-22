@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import enums.loginPage.LoginPageIconsTextsEnum;
 import enums.loginPage.SubMenuServicesEnum;
+import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.text;
@@ -18,7 +19,8 @@ import static org.testng.Assert.assertEquals;
  */
 public class LoginPage {
 
-    final private SelenideElement elementDropdown;
+    @FindBy(css = ".dropdown")
+    private SelenideElement elementDropdown;
 
     /**
      * Factory method. Opens page by URL
@@ -31,12 +33,7 @@ public class LoginPage {
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         Configuration.browser = "CHROME";
 
-        open(pageUrl);
-        return new LoginPage();
-    }
-
-    private LoginPage() {
-        elementDropdown = $(".dropdown");
+        return open(pageUrl, LoginPage.class);
     }
 
     /**

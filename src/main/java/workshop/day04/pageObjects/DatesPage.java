@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.page;
 import static org.openqa.selenium.Keys.ARROW_LEFT;
 import static org.openqa.selenium.Keys.ARROW_RIGHT;
 
@@ -17,10 +18,10 @@ public class DatesPage {
     /**
      * Factory method
      *
-     * @return new instance
+     * @return new page object instance
      */
     public static DatesPage getInstance() {
-        return new DatesPage();
+        return page(DatesPage.class);
     }
 
     /**
