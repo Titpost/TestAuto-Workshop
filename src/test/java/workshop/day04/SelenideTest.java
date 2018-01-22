@@ -59,6 +59,6 @@ public class SelenideTest {
 
         final DatesPage datesPage = differentElementsPage.gotoDatesPage();
 
-        datesPage.checkSlidersWork();
+        datesPage.checkSlidersAside();
     }
 }
