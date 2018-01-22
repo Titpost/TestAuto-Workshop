@@ -45,7 +45,7 @@ public class SelenideTest {
 
         final DifferentElementsPage differentElementsPage = loginPage.gotoDifferentElementsPage();
 
-        /*differentElementsPage.checkElements();
+        differentElementsPage.checkElements();
 
         differentElementsPage.checkCheckboxSelection();
 
@@ -55,10 +55,14 @@ public class SelenideTest {
 
         differentElementsPage.checkLogs();
 
-        differentElementsPage.checkUnselection();*/
+        differentElementsPage.checkUnselection();
 
         final DatesPage datesPage = differentElementsPage.gotoDatesPage();
 
         datesPage.checkSlidersAside();
+
+        datesPage.checkSlidersLeft();
+
+        datesPage.checkSliders30and70();
     }
 }

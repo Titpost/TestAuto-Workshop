@@ -23,6 +23,22 @@ public class DatesPage {
     }
 
     /**
+     * Put sliders maximally to the left
+     */
+    public void checkSlidersLeft() {
+        slideLeft(leftSlider, " 0%");
+        slideLeft(rightSlider, " 0%");
+    }
+
+    /**
+     * Put the right slider to 70% and the left one to 30%
+     */
+    public void checkSliders30and70() {
+        slideRight(rightSlider, "70%");
+        slideRight(leftSlider, "30%");
+    }
+
+    /**
      * Slide a slider to the left
      *
      * @param slider   - element to slide
