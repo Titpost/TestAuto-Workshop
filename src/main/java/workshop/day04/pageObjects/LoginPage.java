@@ -21,7 +21,7 @@ public class LoginPage {
     final private SelenideElement elementDropdown;
 
     /**
-     * Factory method. Opens page by URL.
+     * Factory method. Opens page by URL
      *
      * @param pageUrl to be opened
      * @return new instance
@@ -42,7 +42,7 @@ public class LoginPage {
     }
 
     /**
-     * Authentication procedure.
+     * Authentication procedure
      *
      * @param name - user
      * @param pass - password
@@ -56,7 +56,7 @@ public class LoginPage {
     }
 
     /**
-     * Checks if authentication was successful (user name is presents).
+     * Checks if authentication was successful (user name is presents)
      *
      * @param name of user to be displayed
      */
@@ -65,7 +65,7 @@ public class LoginPage {
     }
 
     /**
-     * Checks if the icon is present and the text beneath is correct.
+     * Checks if the icon is present and the text beneath is correct
      */
     public void checkIconsWithTexts(LoginPageIconsTextsEnum[] benefits) {
         for (LoginPageIconsTextsEnum i : benefits) {
@@ -78,7 +78,7 @@ public class LoginPage {
     }
 
     /**
-     * Checks main page title.
+     * Checks main page title
      *
      * @param title text
      */
@@ -96,7 +96,7 @@ public class LoginPage {
     }
 
     /**
-     * Checks if Service-menu items are present.
+     * Checks if Service-menu items are present
      *
      * @param subItems to be contained
      */
@@ -106,7 +106,7 @@ public class LoginPage {
     }
 
     /**
-     * Checks if Left-section items are present.
+     * Checks if Left-section items are present
      *
      * @param subItems to be contained
      */
@@ -117,7 +117,7 @@ public class LoginPage {
     }
 
     /**
-     * Clicks menu item - SERVICE_DIFFERENTELEMENTS.
+     * Clicks menu item - SERVICE_DIFFERENTELEMENTS
      */
     public DifferentElementsPage gotoDifferentElementsPage() {
         expandServicesMenu();
@@ -130,7 +130,7 @@ public class LoginPage {
     }
 
     /**
-     * Asserts all the texts present in element.
+     * Asserts all the texts present in element
      *
      * @param container - element to look for texts in
      * @param subItems  - texts to find for

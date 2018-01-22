@@ -4,6 +4,7 @@ import enums.loginPage.LoginPageIconsTextsEnum;
 import enums.loginPage.SubMenuServicesEnum;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import workshop.day04.pageObjects.DatesPage;
 import workshop.day04.pageObjects.DifferentElementsPage;
 import workshop.day04.pageObjects.LoginPage;
 
@@ -44,7 +45,7 @@ public class SelenideTest {
 
         final DifferentElementsPage differentElementsPage = loginPage.gotoDifferentElementsPage();
 
-        differentElementsPage.checkElements();
+        /*differentElementsPage.checkElements();
 
         differentElementsPage.checkCheckboxSelection();
 
@@ -54,6 +55,10 @@ public class SelenideTest {
 
         differentElementsPage.checkLogs();
 
-        differentElementsPage.checkUnselection();
+        differentElementsPage.checkUnselection();*/
+
+        final DatesPage datesPage = differentElementsPage.gotoDatesPage();
+
+        datesPage.checkSlidersWork();
     }
 }
