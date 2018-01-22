@@ -18,7 +18,6 @@ import static enums.differentElementsPage.CheckboxLabelsEnum.CHECKBOXES_WIND;
 import static enums.differentElementsPage.DropdownColorsEnum.DROPDOWN_ITEM_YELLOW;
 import static enums.differentElementsPage.RadioLabelsEnum.RADIO_SELEN;
 import static enums.loginPage.SubMenuServicesEnum.SERVICE_DATES;
-import static enums.loginPage.SubMenuServicesEnum.SERVICE_DIFFERENTELEMENTS;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -31,6 +30,15 @@ public class DifferentElementsPage {
     private final SelenideElement dropdown = mainContent.$(".uui-form-element");
     private final SelenideElement rightPanel = $(".right-fix-panel");
     private final SelenideElement logsSection = rightPanel.$(".info-panel-section").$("ul.logs");
+
+    /**
+     * Factory method
+     *
+     * @return new instance
+     */
+    public static DifferentElementsPage getInstance() {
+        return new DifferentElementsPage();
+    }
 
     /**
      * Check presence of the form elements.
@@ -141,14 +149,12 @@ public class DifferentElementsPage {
     /**
      * Clicks menu item - SERVICE_DATES
      */
-    public DatesPage gotoDatesPage() {
+    public void gotoDatesPage() {
         $(".dropdown-toggle").click();
         $(".dropdown").$(".dropdown-menu").$$("li").stream()
                 .map(li -> li.$("a"))
                 .filter(a -> a.getText().contains(SERVICE_DATES.text.toUpperCase()))
                 .findFirst().get().click();
-
-        return new DatesPage();
     }
 
     /**

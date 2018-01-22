@@ -32,9 +32,7 @@ public class LoginPage {
         Configuration.browser = "CHROME";
 
         open(pageUrl);
-        LoginPage page = new LoginPage();
-
-        return page;
+        return new LoginPage();
     }
 
     private LoginPage() {
@@ -119,14 +117,12 @@ public class LoginPage {
     /**
      * Clicks menu item - SERVICE_DIFFERENTELEMENTS
      */
-    public DifferentElementsPage gotoDifferentElementsPage() {
+    public void gotoDifferentElementsPage() {
         expandServicesMenu();
         elementDropdown.$(".dropdown-menu").$$("li").stream()
                 .map(li -> li.$("a"))
                 .filter(a -> a.getText().contains(SERVICE_DIFFERENTELEMENTS.text.toUpperCase()))
                 .findFirst().get().click();
-
-        return new DifferentElementsPage();
     }
 
     /**

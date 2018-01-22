@@ -11,6 +11,8 @@ import workshop.day04.pageObjects.LoginPage;
 public class SelenideTest {
 
     private LoginPage loginPage;
+    private DifferentElementsPage differentElementsPage;
+    private DatesPage datesPage;
 
     /**
      * Gets Object-Page instance.
@@ -18,6 +20,8 @@ public class SelenideTest {
     @BeforeClass
     public void setUp() {
         loginPage = LoginPage.getInstance("https://jdi-framework.github.io/tests");
+        differentElementsPage = DifferentElementsPage.getInstance();
+        datesPage = DatesPage.getInstance();
     }
 
     /**
@@ -43,7 +47,7 @@ public class SelenideTest {
 
         loginPage.checkLeftSectionItemsExist(SubMenuServicesEnum.values());
 
-        final DifferentElementsPage differentElementsPage = loginPage.gotoDifferentElementsPage();
+        loginPage.gotoDifferentElementsPage();
 
         differentElementsPage.checkElements();
 
@@ -57,7 +61,7 @@ public class SelenideTest {
 
         differentElementsPage.checkUnselection();
 
-        final DatesPage datesPage = differentElementsPage.gotoDatesPage();
+        differentElementsPage.gotoDatesPage();
 
         datesPage.checkSlidersAside();
 

@@ -15,6 +15,15 @@ public class DatesPage {
     private final SelenideElement rightSlider = sliders.$(".ui-slider-handle", 1);
 
     /**
+     * Factory method
+     *
+     * @return new instance
+     */
+    public static DatesPage getInstance() {
+        return new DatesPage();
+    }
+
+    /**
      * Put sliders maximally aside
      */
     public void checkSlidersAside() {
