@@ -4,23 +4,18 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import enums.loginPage.LoginPageIconsTextsEnum;
 import enums.loginPage.SubMenuServicesEnum;
-import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
+import static enums.loginPage.SubMenuServicesEnum.SERVICE_DATES;
 import static enums.loginPage.SubMenuServicesEnum.SERVICE_DIFFERENTELEMENTS;
 import static org.testng.Assert.assertEquals;
 
 /**
  * Page object for "Login" page.
  */
-public class LoginPage {
-
-    @FindBy(css = ".dropdown")
-    private SelenideElement elementDropdown;
+public class LoginPage extends BasePage {
 
     /**
      * Factory method. Opens page by URL
@@ -33,7 +28,12 @@ public class LoginPage {
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         Configuration.browser = "CHROME";
 
-        return open(pageUrl, LoginPage.class);
+        open(pageUrl, LoginPage.class);
+
+        LoginPage loginPage = page(LoginPage.class);
+        loginPage.header = page(Header.class);
+
+        return loginPage;
     }
 
     /**
@@ -97,7 +97,7 @@ public class LoginPage {
      */
     public void checkHeaderSubMenuItemsExist(SubMenuServicesEnum[] subItems) {
         expandServicesMenu();
-        iterateToAssertPresence(elementDropdown.$(".dropdown-menu"), subItems);
+        iterateToAssertPresence(header.elementDropdown.$(".dropdown-menu"), subItems);
     }
 
     /**
@@ -116,9 +116,21 @@ public class LoginPage {
      */
     public void gotoDifferentElementsPage() {
         expandServicesMenu();
-        elementDropdown.$(".dropdown-menu").$$("li").stream()
+        header.elementDropdown.$(".dropdown-menu").$$("li").stream()
                 .map(li -> li.$("a"))
                 .filter(a -> a.getText().contains(SERVICE_DIFFERENTELEMENTS.text.toUpperCase()))
+                .findFirst().get().click();
+    }
+
+
+    /**
+     * Clicks menu item - SERVICE_DATES
+     */
+    public void gotoDatesPage() {
+        $(".dropdown-toggle").click();
+        $(".dropdown").$(".dropdown-menu").$$("li").stream()
+                .map(li -> li.$("a"))
+                .filter(a -> a.getText().contains(SERVICE_DATES.text.toUpperCase()))
                 .findFirst().get().click();
     }
 
@@ -138,6 +150,6 @@ public class LoginPage {
      * Clicks on menu dropdown-toggle to expand
      */
     private void expandServicesMenu() {
-        elementDropdown.$(".dropdown-toggle").click();
+        header.elementDropdown.$(".dropdown-toggle").click();
     }
 }

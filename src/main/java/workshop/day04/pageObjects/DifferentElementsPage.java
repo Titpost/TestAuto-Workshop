@@ -19,7 +19,6 @@ import static enums.differentElementsPage.CheckboxLabelsEnum.CHECKBOXES_WATER;
 import static enums.differentElementsPage.CheckboxLabelsEnum.CHECKBOXES_WIND;
 import static enums.differentElementsPage.DropdownColorsEnum.DROPDOWN_ITEM_YELLOW;
 import static enums.differentElementsPage.RadioLabelsEnum.RADIO_SELEN;
-import static enums.loginPage.SubMenuServicesEnum.SERVICE_DATES;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -159,17 +158,6 @@ public class DifferentElementsPage {
                 .filter(txt -> (txt.contains(CHECKBOXES_WIND.label) || txt.contains(CHECKBOXES_WATER.label))
                         && txt.endsWith("false")).count()
         );
-    }
-
-    /**
-     * Clicks menu item - SERVICE_DATES
-     */
-    public void gotoDatesPage() {
-        $(".dropdown-toggle").click();
-        $(".dropdown").$(".dropdown-menu").$$("li").stream()
-                .map(li -> li.$("a"))
-                .filter(a -> a.getText().contains(SERVICE_DATES.text.toUpperCase()))
-                .findFirst().get().click();
     }
 
     /**
