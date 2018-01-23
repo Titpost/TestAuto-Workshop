@@ -9,7 +9,7 @@ public class BaseSelenideTest {
     protected LoginPage loginPage;
 
     /**
-     * Gets Object-Page instance.
+     * Gets Object-Page instance
      */
     protected void setUp() {
         // Open test site by URL

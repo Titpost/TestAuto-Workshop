@@ -31,15 +31,16 @@ public class Dates extends BaseSelenideTest {
         datesPage = DatesPage.getInstance();
 
         // Using drag-and-drop set Range sliders.
-        // left sliders - the most left position, right slider - the most rigth position
+        // left sliders - the most left position, right slider - the most right position
         datesPage.checkSlidersAside();
 
         // Using drag-and-drop set Range sliders.
-        // left sliders - the most left position, right slider - the most left position.
+        // left sliders - the most left position, right slider - the most left position
         datesPage.checkSlidersLeft();
 
         // Using drag-and-drop set Range sliders.
-        // left sliders - the most rigth position, right slider - the most rigth position.
+        // left sliders - the most right position, right slider - the most right position
+        datesPage.checkSlidersRight();
 
         // Using drag-and-drop set Range sliders.
         datesPage.checkSliders30and70();

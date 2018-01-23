@@ -2,12 +2,11 @@ package workshop.day04.pageObjects;
 
 
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.Keys;
+import com.codeborne.selenide.WebDriverRunner;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Selenide.page;
-import static org.openqa.selenium.Keys.ARROW_LEFT;
-import static org.openqa.selenium.Keys.ARROW_RIGHT;
 
 /**
  * Page Object for "Dates" page.
@@ -15,7 +14,7 @@ import static org.openqa.selenium.Keys.ARROW_RIGHT;
 public class DatesPage {
 
     @FindBy(css = ".uui-slider")
-    private SelenideElement sliders;
+    private SelenideElement sliderTrack;
 
     @FindBy(css = ".ui-slider-handle:nth-of-type(1)")
     private SelenideElement leftSlider;
@@ -33,60 +32,55 @@ public class DatesPage {
     }
 
     /**
-     * Put sliders maximally aside
+     * Put sliderTrack maximally aside
      */
     public void checkSlidersAside() {
-        slideLeft(leftSlider, " 0%");
-        slideRight(rightSlider, "100%");
+        setSliderPosition(leftSlider, 0);
+        setSliderPosition(rightSlider, 100);
     }
 
     /**
-     * Put sliders maximally to the left
+     * Put sliderTrack maximally to the left
      */
     public void checkSlidersLeft() {
-        slideLeft(leftSlider, " 0%");
-        slideLeft(rightSlider, " 0%");
+        setSliderPosition(leftSlider, 0);
+        setSliderPosition(rightSlider, 0);
+    }
+
+    /**
+     * Put sliderTrack maximally to the right
+     */
+    public void checkSlidersRight() {
+        setSliderPosition(rightSlider, 100);
+        setSliderPosition(leftSlider, 100);
     }
 
     /**
      * Put the right slider to 70% and the left one to 30%
      */
     public void checkSliders30and70() {
-        slideRight(rightSlider, "70%");
-        slideRight(leftSlider, "30%");
+        setSliderPosition(rightSlider, 70);
+        setSliderPosition(leftSlider, 30);
     }
 
     /**
-     * Slide a slider to the left
-     *
-     * @param slider   - element to slide
-     * @param position - string like " 0%"
+     * Get slider pace in pixels
      */
-    private void slideLeft(SelenideElement slider, String position) {
-        slide(slider, ARROW_LEFT, position);
+    private float getSliderStep() {
+        float step = sliderTrack.getSize().width / 100;
+        return step;
     }
 
-    /**
-     * Slide a slider to the right
-     *
-     * @param slider   - element to slide
-     * @param position - string like "100%"
-     */
-    private void slideRight(SelenideElement slider, String position) {
-        slide(slider, ARROW_RIGHT, position);
+    private int getCurrentPosition(SelenideElement slider) {
+
+        int pos = Integer.parseInt(slider.$("span").getText());
+
+        return pos;
     }
 
-    /**
-     * Slide a slider to the specified position
-     *
-     * @param slider   - element to slide
-     * @param key      - enum Keys like ARROW_LEFT or ARROW_RIGHT
-     * @param position - string like " n%"
-     */
-    private void slide(SelenideElement slider, Keys key, String position) {
-        do {
-            slider.sendKeys(key);
-        }
-        while (!slider.getAttribute("style").contains(position));
+    private void setSliderPosition(SelenideElement slider, Integer position) {
+        Float xOffset = (position - getCurrentPosition(slider)) * getSliderStep();
+        Actions actions = new Actions(WebDriverRunner.getWebDriver());
+        actions.dragAndDropBy(slider, xOffset.intValue(), 0).perform();
     }
 }
