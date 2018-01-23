@@ -7,6 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Selenide.page;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Page Object for "Dates" page.
@@ -59,28 +60,33 @@ public class DatesPage {
      * Put the right slider to 70% and the left one to 30%
      */
     public void checkSliders30and70() {
-        setSliderPosition(rightSlider, 70);
         setSliderPosition(leftSlider, 30);
+        setSliderPosition(rightSlider, 70);
     }
 
-    /**
-     * Get slider pace in pixels
-     */
     private float getSliderStep() {
-        float step = sliderTrack.getSize().width / 100;
-        return step;
+        return ((float) sliderTrack.getSize().width) / 100;
     }
 
     private int getCurrentPosition(SelenideElement slider) {
-
-        int pos = Integer.parseInt(slider.$("span").getText());
-
-        return pos;
+        return Integer.parseInt(slider.$("span").getText());
     }
 
-    private void setSliderPosition(SelenideElement slider, Integer position) {
-        Float xOffset = (position - getCurrentPosition(slider)) * getSliderStep();
-        Actions actions = new Actions(WebDriverRunner.getWebDriver());
-        actions.dragAndDropBy(slider, xOffset.intValue(), 0).perform();
+    private void setSliderPosition(SelenideElement slider, int desired) {
+
+        int current = getCurrentPosition(slider);
+
+        if (desired != current) {
+            final float xOffset = (desired - current) * getSliderStep();
+
+            final Actions actions = new Actions(WebDriverRunner.getWebDriver());
+            actions.dragAndDropBy(slider, Math.round(xOffset), 0).perform();
+
+            if (getCurrentPosition(slider) != desired) {
+                actions.dragAndDropBy(slider, xOffset > 0 ? 4 : -4, 0).perform();
+            }
+        }
+
+        assertEquals(getCurrentPosition(slider), desired);
     }
 }
