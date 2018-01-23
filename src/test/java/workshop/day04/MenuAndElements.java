@@ -4,11 +4,10 @@ import enums.loginPage.LoginPageIconsTextsEnum;
 import enums.loginPage.SubMenuServicesEnum;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import workshop.day04.pageObjects.BasePage;
 import workshop.day04.pageObjects.DifferentElementsPage;
 import workshop.day04.pageObjects.LoginPage;
 
-public class MenuAndElements extends BasePage {
+public class MenuAndElements {
 
     private LoginPage loginPage;
     private DifferentElementsPage differentElementsPage;

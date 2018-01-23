@@ -3,13 +3,12 @@ package workshop.day04;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import workshop.day04.pageObjects.BasePage;
 import workshop.day04.pageObjects.DatesPage;
 import workshop.day04.pageObjects.LoginPage;
 
 import static com.codeborne.selenide.Selenide.close;
 
-public class Dates extends BasePage {
+public class Dates {
 
     private LoginPage loginPage;
     private DatesPage datesPage;
