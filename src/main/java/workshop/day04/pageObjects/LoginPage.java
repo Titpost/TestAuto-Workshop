@@ -7,7 +7,10 @@ import enums.loginPage.SubMenuServicesEnum;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.page;
 import static enums.loginPage.SubMenuServicesEnum.SERVICE_DATES;
 import static enums.loginPage.SubMenuServicesEnum.SERVICE_DIFFERENTELEMENTS;
 import static org.testng.Assert.assertEquals;
@@ -28,9 +31,7 @@ public class LoginPage extends BasePage {
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         Configuration.browser = "CHROME";
 
-        open(pageUrl, LoginPage.class);
-
-        LoginPage loginPage = page(LoginPage.class);
+        LoginPage loginPage = open(pageUrl, LoginPage.class);
         loginPage.header = page(Header.class);
 
         return loginPage;
@@ -127,8 +128,8 @@ public class LoginPage extends BasePage {
      * Clicks menu item - SERVICE_DATES
      */
     public void gotoDatesPage() {
-        $(".dropdown-toggle").click();
-        $(".dropdown").$(".dropdown-menu").$$("li").stream()
+        expandServicesMenu();
+        header.elementDropdown.$(".dropdown-menu").$$("li").stream()
                 .map(li -> li.$("a"))
                 .filter(a -> a.getText().contains(SERVICE_DATES.text.toUpperCase()))
                 .findFirst().get().click();
@@ -144,12 +145,5 @@ public class LoginPage extends BasePage {
         for (SubMenuServicesEnum item : subItems) {
             container.shouldHave(text(item.text));
         }
-    }
-
-    /**
-     * Clicks on menu dropdown-toggle to expand
-     */
-    private void expandServicesMenu() {
-        header.elementDropdown.$(".dropdown-toggle").click();
     }
 }

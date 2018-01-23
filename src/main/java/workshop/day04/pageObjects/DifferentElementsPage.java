@@ -37,7 +37,7 @@ public class DifferentElementsPage {
     private SelenideElement radioRow;
 
     @FindBy(css = main_content + " .uui-form-element")
-    private SelenideElement dropdown;
+    private SelenideElement dropdownList;
 
     @FindBy(css = ".right-fix-panel")
     private SelenideElement rightPanel;
@@ -72,7 +72,7 @@ public class DifferentElementsPage {
                 .collect(Collectors.toList())));
 
         // Dropdown list
-        dropdown.should(exist);
+        dropdownList.should(exist);
 
         // Buttons
         mainContent.$("button.uui-button").should(exist);
@@ -108,12 +108,12 @@ public class DifferentElementsPage {
      * Click drop-down item and check it is selected
      */
     public void checkDropdownSelection() {
-        dropdown.click();
-        dropdown.$$("option").stream()
+        dropdownList.click();
+        dropdownList.$$("option").stream()
                 .filter(o -> o.getText().contains(DROPDOWN_ITEM_YELLOW.color))
                 .findFirst().get().click();
 
-        assertEquals(DROPDOWN_ITEM_YELLOW.color, dropdown.val());
+        assertEquals(DROPDOWN_ITEM_YELLOW.color, dropdownList.val());
     }
 
     /**

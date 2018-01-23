@@ -6,4 +6,11 @@ package workshop.day04.pageObjects;
 public class BasePage {
 
     protected Header header;
+
+    /**
+     * Clicks on menu dropdown-toggle to expand
+     */
+    void expandServicesMenu() {
+        header.elementDropdown.$(".dropdown-toggle").click();
+    }
 }
