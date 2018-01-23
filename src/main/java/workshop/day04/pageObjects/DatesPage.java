@@ -9,6 +9,9 @@ import static com.codeborne.selenide.Selenide.page;
 import static org.openqa.selenium.Keys.ARROW_LEFT;
 import static org.openqa.selenium.Keys.ARROW_RIGHT;
 
+/**
+ * Page Object for "Dates" page.
+ */
 public class DatesPage {
 
     @FindBy(css = ".uui-slider")

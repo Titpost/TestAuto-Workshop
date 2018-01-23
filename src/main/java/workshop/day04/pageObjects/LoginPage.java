@@ -15,7 +15,7 @@ import static enums.loginPage.SubMenuServicesEnum.SERVICE_DIFFERENTELEMENTS;
 import static org.testng.Assert.assertEquals;
 
 /**
- * Page object for Selenide tests.
+ * Page object for "Login" page.
  */
 public class LoginPage {
 

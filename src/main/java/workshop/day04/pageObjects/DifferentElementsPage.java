@@ -4,6 +4,7 @@ package workshop.day04.pageObjects;
 import com.codeborne.selenide.SelenideElement;
 import enums.differentElementsPage.CheckboxLabelsEnum;
 import enums.differentElementsPage.RadioLabelsEnum;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,12 +26,20 @@ import static org.testng.Assert.assertTrue;
 
 public class DifferentElementsPage {
 
+    private static final String main_content = ".main-content-hg";
+
     private final SelenideElement mainContent = $(".main-content-hg");
     private final SelenideElement checkboxRow = mainContent.$(".checkbox-row", 0);
-    private final SelenideElement radioRow = mainContent.$(".checkbox-row", 1);
-    private final SelenideElement dropdown = mainContent.$(".uui-form-element");
-    private final SelenideElement rightPanel = $(".right-fix-panel");
-    private final SelenideElement logsSection = rightPanel.$(".info-panel-section").$("ul.logs");
+    private final SelenideElement radioRow = $(".main-content-hg .checkbox-row", 1);
+
+    @FindBy(css = main_content + " .uui-form-element")
+    private SelenideElement dropdown;
+
+    @FindBy(css = ".right-fix-panel")
+    private SelenideElement rightPanel;
+
+    @FindBy(css = ".info-panel-section ul.logs")
+    private SelenideElement logsSection;
 
     /**
      * Factory method
