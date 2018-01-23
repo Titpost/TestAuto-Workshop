@@ -3,34 +3,21 @@ package workshop.day04;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import workshop.day04.base.BaseSelenideTest;
 import workshop.day04.pageObjects.DatesPage;
-import workshop.day04.pageObjects.LoginPage;
 
-import static com.codeborne.selenide.Selenide.close;
+public class Dates extends BaseSelenideTest {
 
-public class Dates {
-
-    private LoginPage loginPage;
     private DatesPage datesPage;
 
-    /**
-     * Gets Object-Page instance.
-     */
     @BeforeClass
     public void setUp() {
-        // Open test site by URL
-        loginPage = LoginPage.getInstance("https://jdi-framework.github.io/tests");
-
-        // Perform login
-        loginPage.login("epam", "1234");
-
-        // Assert User name in the left-top side of screen that user is loggined
-        loginPage.checkProfileName("Piter Chailovskii");
+        super.setUp();
     }
 
     @AfterClass
     public void closeDown() {
-        close();
+        super.closeDown();
     }
 
     /**

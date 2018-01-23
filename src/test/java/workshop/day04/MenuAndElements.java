@@ -2,29 +2,24 @@ package workshop.day04;
 
 import enums.loginPage.LoginPageIconsTextsEnum;
 import enums.loginPage.SubMenuServicesEnum;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import workshop.day04.base.BaseSelenideTest;
 import workshop.day04.pageObjects.DifferentElementsPage;
-import workshop.day04.pageObjects.LoginPage;
 
-public class MenuAndElements {
+public class MenuAndElements extends BaseSelenideTest {
 
-    private LoginPage loginPage;
     private DifferentElementsPage differentElementsPage;
 
-    /**
-     * Gets Object-Page instance.
-     */
     @BeforeClass
     public void setUp() {
-        // Open test site by URL
-        loginPage = LoginPage.getInstance("https://jdi-framework.github.io/tests");
+        super.setUp();
+    }
 
-        // Perform login
-        loginPage.login("epam", "1234");
-
-        // Assert User name in the left-top side of screen that user is loggined
-        loginPage.checkProfileName("Piter Chailovskii");
+    @AfterClass
+    public void closeDown() {
+        super.closeDown();
     }
 
     /**
