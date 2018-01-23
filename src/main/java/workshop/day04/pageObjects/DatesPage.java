@@ -64,6 +64,7 @@ public class DatesPage {
         setSliderPosition(rightSlider, 70);
     }
 
+
     private float getSliderStep() {
         return ((float) sliderTrack.getSize().width) / 100;
     }
@@ -77,13 +78,16 @@ public class DatesPage {
         int current = getCurrentPosition(slider);
 
         if (desired != current) {
-            final float xOffset = (desired - current) * getSliderStep();
+            final float step = getSliderStep();
+            final float xOffset = (desired - current) * step;
 
             final Actions actions = new Actions(WebDriverRunner.getWebDriver());
             actions.dragAndDropBy(slider, Math.round(xOffset), 0).perform();
 
             if (getCurrentPosition(slider) != desired) {
-                actions.dragAndDropBy(slider, xOffset > 0 ? 4 : -4, 0).perform();
+                final int stepWithDelta = Math.round(step) + 1;
+                actions.dragAndDropBy(slider, xOffset > 0 ? stepWithDelta : -stepWithDelta, 0)
+                        .perform();
             }
         }
 
