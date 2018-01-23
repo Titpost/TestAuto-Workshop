@@ -28,9 +28,14 @@ public class DifferentElementsPage {
 
     private static final String main_content = ".main-content-hg";
 
-    private final SelenideElement mainContent = $(".main-content-hg");
-    private final SelenideElement checkboxRow = mainContent.$(".checkbox-row", 0);
-    private final SelenideElement radioRow = $(".main-content-hg .checkbox-row", 1);
+    @FindBy(css = main_content)
+    private SelenideElement mainContent;
+
+    @FindBy(css = main_content + " .support-title + .checkbox-row")
+    private SelenideElement checkboxRow;
+
+    @FindBy(css = main_content + " .checkbox-row ~.checkbox-row")
+    private SelenideElement radioRow;
 
     @FindBy(css = main_content + " .uui-form-element")
     private SelenideElement dropdown;
