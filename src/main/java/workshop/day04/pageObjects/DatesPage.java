@@ -108,8 +108,8 @@ public class DatesPage {
                             .perform();
                 }
             }
-
-            assertEquals(getCurrentPosition(slider), desired);
+            // Assertion for sliders values must be implemented by 1 unified method
+            assertEquals(desired, getCurrentPosition(slider));
         }
     }
 }
