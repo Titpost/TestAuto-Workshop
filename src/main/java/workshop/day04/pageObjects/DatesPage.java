@@ -91,7 +91,7 @@ public class DatesPage {
 
         private void setSliderPosition(int desired) {
 
-            int current = getCurrentPosition(slider);
+            final int current = getCurrentPosition(slider);
 
             if (desired != current) {
                 final float step = getSliderStep();
