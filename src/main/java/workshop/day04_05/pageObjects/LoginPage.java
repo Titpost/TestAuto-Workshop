@@ -1,4 +1,4 @@
-package workshop.day04.pageObjects;
+package workshop.day04_05.pageObjects;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
@@ -7,10 +7,7 @@ import enums.loginPage.SubMenuServicesEnum;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.page;
+import static com.codeborne.selenide.Selenide.*;
 import static enums.loginPage.SubMenuServicesEnum.SERVICE_DATES;
 import static enums.loginPage.SubMenuServicesEnum.SERVICE_DIFFERENTELEMENTS;
 import static org.testng.Assert.assertEquals;

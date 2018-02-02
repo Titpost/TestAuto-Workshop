@@ -1,11 +1,14 @@
-package workshop.day04;
+package workshop.day04_05;
 
+import com.sun.org.glassfish.gmbal.Description;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import workshop.day04.base.BaseSelenideTest;
-import workshop.day04.pageObjects.DatesPage;
+import workshop.day04_05.base.BaseSelenideTest;
+import workshop.day04_05.pageObjects.DatesPage;
 
+@Title("Page 'dates' test class")
+@Description("Test calss for slider's DnD")
 public class Dates extends BaseSelenideTest {
 
     private DatesPage datesPage;
@@ -23,6 +26,8 @@ public class Dates extends BaseSelenideTest {
     /**
      * Dates page test
      */
+    @Title("Page 'dates' test method")
+    @Description("Test method for slider's DnD")
     @Test
     public void datesPage() {
 

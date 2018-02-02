@@ -1,6 +1,6 @@
-package workshop.day04.base;
+package workshop.day04_05.base;
 
-import workshop.day04.pageObjects.LoginPage;
+import workshop.day04_05.pageObjects.LoginPage;
 
 import static com.codeborne.selenide.Selenide.close;
 

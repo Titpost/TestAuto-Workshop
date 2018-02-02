@@ -1,4 +1,4 @@
-package workshop.day04.pageObjects;
+package workshop.day04_05.pageObjects;
 
 /**
  * Base class for Page Objects classes.
