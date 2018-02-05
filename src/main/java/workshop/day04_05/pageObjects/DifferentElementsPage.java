@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import enums.differentElementsPage.CheckboxLabelsEnum;
 import enums.differentElementsPage.RadioLabelsEnum;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.Arrays;
 import java.util.List;
@@ -57,6 +58,7 @@ public class DifferentElementsPage {
     /**
      * Check presence of the form elements.
      */
+    @Step
     public void checkElements() {
 
         // CheckBoxes with labels
@@ -86,6 +88,7 @@ public class DifferentElementsPage {
     /**
      * Click 2 checkboxes and assert they got checked
      */
+    @Step
     public void checkCheckboxSelection() {
         clickCheckboxes();
         assertEquals(2, checkboxRow.$$("input:checked").size());
@@ -94,6 +97,7 @@ public class DifferentElementsPage {
     /**
      * Click radio-button and assert it got checked
      */
+    @Step
     public void checkRadioSelection() {
         final List<SelenideElement> radios = radioRow.$$(".label-radio").stream()
                 .filter(l -> l.getText().contains(RADIO_SELEN.label))
@@ -107,6 +111,7 @@ public class DifferentElementsPage {
     /**
      * Click drop-down item and check it is selected
      */
+    @Step
     public void checkDropdownSelection() {
         dropdownList.click();
         dropdownList.$$("option").stream()
@@ -119,6 +124,7 @@ public class DifferentElementsPage {
     /**
      * Check if logs contain all the element's selection activity
      */
+    @Step
     public void checkLogs() {
         final List<String> logs = logsSection.$$("li").stream()
                 .map(SelenideElement::getText)
@@ -150,6 +156,7 @@ public class DifferentElementsPage {
     /**
      * Click 2 checkboxes and assert they got unchecked
      */
+    @Step
     public void checkUnselection() {
         clickCheckboxes();
         assertEquals(0, checkboxRow.$$("input:checked").size());
@@ -163,6 +170,7 @@ public class DifferentElementsPage {
     /**
      * Click on WIND and WATER checkboxes
      */
+    @Step
     private void clickCheckboxes() {
         checkboxRow.$$(".label-checkbox").stream()
                 .filter(l -> l.getText().contains(CHECKBOXES_WATER.label) ||

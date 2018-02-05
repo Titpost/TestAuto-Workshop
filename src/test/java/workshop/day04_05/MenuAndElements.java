@@ -4,10 +4,17 @@ import enums.loginPage.LoginPageIconsTextsEnum;
 import enums.loginPage.SubMenuServicesEnum;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Title;
 import workshop.day04_05.base.BaseSelenideTest;
+import workshop.day04_05.listeners.AllureAttachmentListener;
 import workshop.day04_05.pageObjects.DifferentElementsPage;
 
+@Title("Page 'Menu & Elements' test class")
+@Description("Test class for slider's DnD")
+@Listeners(AllureAttachmentListener.class)
 public class MenuAndElements extends BaseSelenideTest {
 
     private DifferentElementsPage differentElementsPage;

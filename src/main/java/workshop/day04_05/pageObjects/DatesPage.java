@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
@@ -33,6 +34,7 @@ public class DatesPage {
      *
      * @return new page object instance
      */
+    @Step
     public static DatesPage getInstance() {
         DatesPage datesPage = page(DatesPage.class);
         datesPage.init();
@@ -42,6 +44,7 @@ public class DatesPage {
     /**
      * Put sliderTrack maximally aside
      */
+    @Step
     public void checkSlidersAside() {
         left.setSliderPosition(0);
         right.setSliderPosition(100);
@@ -50,6 +53,7 @@ public class DatesPage {
     /**
      * Put sliderTrack maximally to the left
      */
+    @Step
     public void checkSlidersLeft() {
         left.setSliderPosition(0);
         right.setSliderPosition(0);
@@ -58,6 +62,7 @@ public class DatesPage {
     /**
      * Put sliderTrack maximally to the right
      */
+    @Step
     public void checkSlidersRight() {
         right.setSliderPosition(100);
         left.setSliderPosition(100);
@@ -66,6 +71,7 @@ public class DatesPage {
     /**
      * Put the right slider to 70% and the left one to 30%
      */
+    @Step
     public void checkSliders30and70() {
         left.setSliderPosition(30);
         right.setSliderPosition(70);
