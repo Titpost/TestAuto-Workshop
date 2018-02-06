@@ -4,15 +4,15 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.Title;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Stories;
 import workshop.day04_05.base.BaseSelenideTest;
 import workshop.day04_05.listeners.AllureAttachmentListener;
 import workshop.day04_05.pageObjects.DatesPage;
 
-@Title("Page 'dates' test class")
-@Description("Test class for slider's DnD")
 @Listeners(AllureAttachmentListener.class)
+@Features({"Allure Reports Suite"})
+@Stories({"UI controls tests"})
 public class Dates extends BaseSelenideTest {
 
     private DatesPage datesPage;

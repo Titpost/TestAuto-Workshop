@@ -9,9 +9,9 @@ import ru.yandex.qatools.allure.annotations.Attachment;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-
 public class AllureAttachmentListener extends TestListenerAdapter {
-    @Attachment(value = "Attachment: {0}", type = "image/png")
+
+    @Attachment(value = "Page screenshot", type = "image/png")
     public byte[] makeScreenshot() {
         byte[] array = {1};
         try {
@@ -21,12 +21,9 @@ public class AllureAttachmentListener extends TestListenerAdapter {
         }
         return array;
     }
+
     @Override
-    public void onTestFailure(ITestResult tr) {
-        makeScreenshot();
-    }
-    @Override
-    public void onTestSuccess(ITestResult tr) {
+    public void onTestFailure(ITestResult iTestResult) {
         makeScreenshot();
     }
 }

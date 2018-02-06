@@ -1,9 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Smoke tests" verbose="1" >
-    <test name="Smoke test 1"   >
+<suite name="Allure tests" verbose="1" >
+    <test name="Allure test 1"   >
         <classes>
             <class name="workshop.day04_05.Dates"/>
+            <class name="workshop.day04_05.MenuAndElements"/>
         </classes>
     </test>
 </suite>
