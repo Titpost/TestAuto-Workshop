@@ -163,7 +163,7 @@ public class DifferentElementsPage {
         assertEquals(2, logsSection.$$("li").stream()
                 .map(SelenideElement::getText)
                 .filter(txt -> (txt.contains(CHECKBOXES_WIND.label) || txt.contains(CHECKBOXES_WATER.label))
-                        && txt.endsWith("2false"))
+                        && txt.endsWith("false"))
                 .count()
         );
     }
