@@ -1,18 +1,13 @@
 package workshop.day07_jdi.enums;
 
+/**
+ * Created by Tit.
+ */
 public enum HeaderMenu {
-    PRODUCT_DEVELOPMENT("Product Development"),
-    ENGINEERING_EXCELLENCE("Engineering Excellence"),
-    CORE_TECHNOLOGIES("Core Technologies"),
-    ASSURANCE("Assurance");
-
-    public String value;
-    HeaderMenu(String value) {
-        this.value = value;
-    }
+    HOME, CONTACT_FORM, SERVICE, METALSиCOLORS;
 
     @Override
     public String toString() {
-        return value;
+        return name().replaceAll("и", " & ");
     }
 }
