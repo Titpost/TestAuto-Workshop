@@ -16,14 +16,19 @@ public class ElementsTests extends JdiTestsBase {
     @BeforeMethod
     public void before(Method method) {
         loginPage.shouldBeOpened();
+
+        // Login on JDI site as User
         header.loginAs(new User("epam", "1234"));
     }
 
     @Test
     public void fillElements() {
+
+        // Open Metals & Colors page by Header menu
         headerMenu.select(METALSиCOLORS);
         metalsColorsPage.checkOpened();
 
+        // Summary: 3, 8
         metalsColorsPage.selectRadios("3", "8");
     }
 }
