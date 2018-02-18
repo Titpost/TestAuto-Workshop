@@ -23,6 +23,5 @@ public class JdiSite extends WebSite {
     @Css(".m-l8")
     static Menu<HeaderMenu> headerMenu;
 
-
     public static Header header;
 }

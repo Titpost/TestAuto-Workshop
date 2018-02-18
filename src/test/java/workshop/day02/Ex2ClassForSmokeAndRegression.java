@@ -7,7 +7,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import workshop.SeleniumBase;
+import workshop.base.SeleniumBase;
 
 import java.util.HashMap;
 import java.util.List;

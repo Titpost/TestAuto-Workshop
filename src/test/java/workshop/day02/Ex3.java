@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import workshop.SeleniumBase;
+import workshop.base.SeleniumBase;
 
 import java.util.HashMap;
 import java.util.List;

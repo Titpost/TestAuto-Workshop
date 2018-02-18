@@ -1,4 +1,4 @@
-package workshop;
+package workshop.base;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.SearchContext;
