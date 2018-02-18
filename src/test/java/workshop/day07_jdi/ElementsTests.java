@@ -30,5 +30,8 @@ public class ElementsTests extends JdiTestsBase {
 
         // Summary: 3, 8
         metalsColorsPage.selectRadios("3", "8");
+
+        // Elements: Water, Fire
+        metalsColorsPage.selectCheckboxes("Water", "Fire");
     }
 }
