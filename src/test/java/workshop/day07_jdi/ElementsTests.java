@@ -5,9 +5,13 @@ import org.testng.annotations.Test;
 import workshop.base.JdiTestsBase;
 import workshop.day07_jdi.entities.User;
 
-import static workshop.day07_jdi.JdiSite.*;
+import static workshop.day07_jdi.JdiSite.header;
+import static workshop.day07_jdi.JdiSite.headerMenu;
+import static workshop.day07_jdi.JdiSite.loginPage;
+import static workshop.day07_jdi.JdiSite.metalsColorsPage;
+import static workshop.day07_jdi.enums.ColorsEnum.Red;
 import static workshop.day07_jdi.enums.HeaderMenu.METALSиCOLORS;
-import static workshop.day07_jdi.enums.MetalColorsEnum.Red;
+import static workshop.day07_jdi.enums.MetalsEnum.Selen;
 
 
 public class ElementsTests extends JdiTestsBase {
@@ -38,7 +42,13 @@ public class ElementsTests extends JdiTestsBase {
 
     @Test
     public void selectColor() {
-        //  Colors: Red
+        // Colors: Red
         metalsColorsPage.selectColor(Red);
+    }
+
+    @Test
+    public void selectMetal() {
+        // Metals: Selen
+        metalsColorsPage.selectMetal(Selen);
     }
 }

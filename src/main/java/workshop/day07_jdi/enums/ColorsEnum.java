@@ -1,5 +1,5 @@
 package workshop.day07_jdi.enums;
 
-public enum MetalColorsEnum {
+public enum ColorsEnum {
     Colors, Red, Green, Blue, Yellow
 }

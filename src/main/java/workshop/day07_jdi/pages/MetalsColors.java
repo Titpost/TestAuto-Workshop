@@ -6,7 +6,8 @@ import com.epam.jdi.uitests.web.selenium.elements.complex.Elements;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JFindBy;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JDropdown;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.simple.Css;
-import workshop.day07_jdi.enums.MetalColorsEnum;
+import workshop.day07_jdi.enums.ColorsEnum;
+import workshop.day07_jdi.enums.MetalsEnum;
 import workshop.day07_jdi.sections.ElementsCheckbox;
 import workshop.day07_jdi.sections.SummaryRadioButton;
 
@@ -25,7 +26,14 @@ public class MetalsColors extends CommonPage  {
             jlist = @JFindBy(tagName = "li"),
             jvalue = @JFindBy(css = ".filter-option")
     )
-    public IDropDown<MetalColorsEnum> colors;
+    public IDropDown<ColorsEnum> colors;
+
+    @JDropdown(
+            jroot = @JFindBy(css = ".metals"),
+            jlist = @JFindBy(tagName = "li"),
+            jvalue = @JFindBy(css = ".filter-option")
+    )
+    public IDropDown<MetalsEnum> metals;
 
 
     /**
@@ -49,10 +57,18 @@ public class MetalsColors extends CommonPage  {
     }
 
     /**
-     * Selects drop-down item by its name
+     * Selects drop-down item (color) by its name
      * @param color by name
      */
-    public void selectColor(MetalColorsEnum color) {
+    public void selectColor(ColorsEnum color) {
         colors.select(color);
+    }
+
+    /**
+     * Selects drop-down item (metal) by its name
+     * @param metal by name
+     */
+    public void selectMetal(MetalsEnum metal) {
+        metals.select(metal);
     }
 }
