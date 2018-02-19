@@ -1,5 +1,6 @@
 package workshop.day07_jdi;
 
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import workshop.base.JdiTestsBase;
@@ -55,5 +56,10 @@ public class ElementsTests extends JdiTestsBase {
     public void selectVegetables() {
         // Vegetables: Cucumber,Tomato
         metalsColorsPage.selectVegetables(Cucumber, Tomato);
+    }
+
+    @AfterClass
+    public void after() {
+        metalsColorsPage.submit();
     }
 }

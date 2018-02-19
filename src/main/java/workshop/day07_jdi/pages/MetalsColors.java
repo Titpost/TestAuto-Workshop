@@ -1,5 +1,6 @@
 package workshop.day07_jdi.pages;
 
+import com.epam.jdi.uitests.core.interfaces.common.IButton;
 import com.epam.jdi.uitests.core.interfaces.complex.IDropDown;
 import com.epam.jdi.uitests.web.selenium.elements.base.Element;
 import com.epam.jdi.uitests.web.selenium.elements.complex.Elements;
@@ -42,6 +43,9 @@ public class MetalsColors extends CommonPage  {
             jvalue = @JFindBy(css = ".caret")
     )
     private IDropDown<VegetablesEnum> vegetables;
+
+    @Css("#submit-button")
+    private IButton submit;
 
 
     /**
@@ -87,5 +91,9 @@ public class MetalsColors extends CommonPage  {
     public void selectVegetables(VegetablesEnum... vegetables) {
         Arrays.stream(vegetables)
                 .forEach(v -> this.vegetables.select(v));
+    }
+
+    public void submit() {
+        submit.click();
     }
 }
