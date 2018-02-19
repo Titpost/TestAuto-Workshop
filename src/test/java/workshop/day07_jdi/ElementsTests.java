@@ -60,6 +60,9 @@ public class ElementsTests extends JdiTestsBase {
 
     @AfterClass
     public void after() {
+        // Submit form Metals & Colors
         metalsColorsPage.submit();
+        // Result sections should contains data
+        metalsColorsPage.checkResults();
     }
 }

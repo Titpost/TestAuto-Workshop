@@ -1,6 +1,7 @@
 package workshop.day07_jdi;
 
 import com.epam.jdi.uitests.web.selenium.elements.complex.Menu;
+import com.epam.jdi.uitests.web.selenium.elements.complex.TextList;
 import com.epam.jdi.uitests.web.selenium.elements.composite.WebSite;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JPage;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JSite;
@@ -22,6 +23,9 @@ public class JdiSite extends WebSite {
 
     @Css(".m-l8")
     static Menu<HeaderMenu> headerMenu;
+
+    @Css(".results")
+    public static TextList<Enum> resultsLog;
 
     public static Header header;
 }

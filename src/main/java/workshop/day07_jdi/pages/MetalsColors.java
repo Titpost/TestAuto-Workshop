@@ -2,11 +2,13 @@ package workshop.day07_jdi.pages;
 
 import com.epam.jdi.uitests.core.interfaces.common.IButton;
 import com.epam.jdi.uitests.core.interfaces.complex.IDropDown;
+import com.epam.jdi.uitests.core.interfaces.complex.IDropList;
 import com.epam.jdi.uitests.web.selenium.elements.base.Element;
 import com.epam.jdi.uitests.web.selenium.elements.complex.Elements;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JFindBy;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JDropdown;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.simple.Css;
+import org.openqa.selenium.support.FindBy;
 import workshop.day07_jdi.enums.ColorsEnum;
 import workshop.day07_jdi.enums.MetalsEnum;
 import workshop.day07_jdi.enums.VegetablesEnum;
@@ -14,6 +16,9 @@ import workshop.day07_jdi.sections.ElementsCheckbox;
 import workshop.day07_jdi.sections.SummaryRadioButton;
 
 import java.util.Arrays;
+
+import static com.epam.web.matcher.testng.Assert.assertContains;
+import static workshop.day07_jdi.JdiSite.resultsLog;
 
 public class MetalsColors extends CommonPage  {
 
@@ -33,16 +38,19 @@ public class MetalsColors extends CommonPage  {
     @JDropdown(
             jroot = @JFindBy(css = ".metals"),
             jlist = @JFindBy(tagName = "li"),
-            jvalue = @JFindBy(css = ".caret")
+            value = @FindBy(css = ".caret")
     )
     private IDropDown<MetalsEnum> metals;
 
     @JDropdown(
-            jroot = @JFindBy(css = "#salad-dropdown"),
+            jroot = @JFindBy(xpath = ".salad"),
             jlist = @JFindBy(tagName = "li"),
-            jvalue = @JFindBy(css = ".caret")
+            jexpand = @JFindBy(tagName = "button")
     )
-    private IDropDown<VegetablesEnum> vegetables;
+    private IDropList <VegetablesEnum> vegetables;
+
+    @JFindBy(id = "salad-dropdown")
+    public IButton button;
 
     @Css("#submit-button")
     private IButton submit;
@@ -69,7 +77,7 @@ public class MetalsColors extends CommonPage  {
     }
 
     /**
-     * Selects drop-down item (color) by its name
+     * Select drop-down item (color) by its name
      * @param color by name
      */
     public void selectColor(ColorsEnum color) {
@@ -77,7 +85,7 @@ public class MetalsColors extends CommonPage  {
     }
 
     /**
-     * Selects drop-down item (metal) by its name
+     * Select drop-down item (metal) by its name
      * @param metal by name
      */
     public void selectMetal(MetalsEnum metal) {
@@ -85,15 +93,27 @@ public class MetalsColors extends CommonPage  {
     }
 
     /**
-     * Selects drop-down items (vegetables) by its name
-     * @param vegetables by names
+     * Clear and select drop-down items
+     * (vegetables) by its name
+     * @param toSelect by names
      */
-    public void selectVegetables(VegetablesEnum... vegetables) {
-        Arrays.stream(vegetables)
-                .forEach(v -> this.vegetables.select(v));
+    public void selectVegetables(VegetablesEnum... toSelect) {
+
+        button.click();
+        vegetables.clear();
+
+        Arrays.stream(toSelect)
+                .forEach(v -> vegetables.select(v));
     }
 
+    /**
+     * Submit
+     */
     public void submit() {
         submit.click();
+    }
+
+    public void checkResults() {
+        assertContains(() -> resultsLog.getFirstText(), "Summary: 9");
     }
 }
