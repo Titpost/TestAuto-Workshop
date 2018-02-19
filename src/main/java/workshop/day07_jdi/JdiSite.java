@@ -25,7 +25,7 @@ public class JdiSite extends WebSite {
     static Menu<HeaderMenu> headerMenu;
 
     @Css(".results")
-    public static TextList<Enum> resultsLog;
+    public static TextList<Enum> results;
 
     public static Header header;
 }

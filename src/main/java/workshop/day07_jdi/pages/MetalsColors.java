@@ -20,7 +20,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.epam.web.matcher.junit.Assert.assertContains;
-import static workshop.day07_jdi.JdiSite.resultsLog;
+import static enums.differentElementsPage.CheckboxLabelsEnum.CHECKBOXES_FIRE;
+import static enums.differentElementsPage.CheckboxLabelsEnum.CHECKBOXES_WATER;
+import static workshop.day07_jdi.JdiSite.results;
+import static workshop.day07_jdi.enums.ColorsEnum.Red;
+import static workshop.day07_jdi.enums.MetalsEnum.Selen;
+import static workshop.day07_jdi.enums.VegetablesEnum.Cucumber;
+import static workshop.day07_jdi.enums.VegetablesEnum.Tomato;
 
 public class MetalsColors extends CommonPage  {
 
@@ -111,7 +117,36 @@ public class MetalsColors extends CommonPage  {
         submit.click();
     }
 
+    /**
+     * Check results section
+     */
     public void checkResults() {
-        assertContains(() -> resultsLog.getFirstText(), "Summary: 11");
+
+        Arrays.stream(results.getFirstText().split("\n"))
+                .map(l -> l.split(": "))
+                .forEach(entry -> {
+                    switch (entry[0]) {
+                        case "Summary" :
+                            assertContains(entry[1], "11");
+                            break;
+
+                        case "Elements" :
+                            assertContains(entry[1], String.join(", ",
+                                    CHECKBOXES_WATER.label, CHECKBOXES_FIRE.label));
+                            break;
+
+                        case "Color" :
+                            assertContains(entry[1], Red.name());
+                            break;
+
+                        case "Metal" :
+                            assertContains(entry[1], Selen.name());
+                            break;
+
+                        case "Vegetables" :
+                            assertContains(entry[1], String.join(", ",
+                                    Cucumber.name(), Tomato.name()));
+                    }
+                });
     }
 }
