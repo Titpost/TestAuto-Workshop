@@ -8,6 +8,7 @@ import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.object
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.simple.Css;
 import workshop.day07_jdi.enums.ColorsEnum;
 import workshop.day07_jdi.enums.MetalsEnum;
+import workshop.day07_jdi.enums.VegetablesEnum;
 import workshop.day07_jdi.sections.ElementsCheckbox;
 import workshop.day07_jdi.sections.SummaryRadioButton;
 
@@ -26,14 +27,21 @@ public class MetalsColors extends CommonPage  {
             jlist = @JFindBy(tagName = "li"),
             jvalue = @JFindBy(css = ".filter-option")
     )
-    public IDropDown<ColorsEnum> colors;
+    private IDropDown<ColorsEnum> colors;
 
     @JDropdown(
             jroot = @JFindBy(css = ".metals"),
             jlist = @JFindBy(tagName = "li"),
             jvalue = @JFindBy(css = ".caret")
     )
-    public IDropDown<MetalsEnum> metals;
+    private IDropDown<MetalsEnum> metals;
+
+    @JDropdown(
+            jroot = @JFindBy(css = "#salad-dropdown"),
+            jlist = @JFindBy(tagName = "li"),
+            jvalue = @JFindBy(css = ".caret")
+    )
+    private IDropDown<VegetablesEnum> vegetables;
 
 
     /**
@@ -70,5 +78,14 @@ public class MetalsColors extends CommonPage  {
      */
     public void selectMetal(MetalsEnum metal) {
         metals.select(metal);
+    }
+
+    /**
+     * Selects drop-down items (vegetables) by its name
+     * @param vegetables by names
+     */
+    public void selectVegetables(VegetablesEnum... vegetables) {
+        Arrays.stream(vegetables)
+                .forEach(v -> this.vegetables.select(v));
     }
 }
