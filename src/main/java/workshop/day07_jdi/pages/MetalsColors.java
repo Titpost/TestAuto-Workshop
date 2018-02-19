@@ -31,7 +31,7 @@ public class MetalsColors extends CommonPage  {
     @JDropdown(
             jroot = @JFindBy(css = ".metals"),
             jlist = @JFindBy(tagName = "li"),
-            jvalue = @JFindBy(css = ".filter-option")
+            jvalue = @JFindBy(css = ".caret")
     )
     public IDropDown<MetalsEnum> metals;
 
