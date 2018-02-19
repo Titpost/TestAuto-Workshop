@@ -2,12 +2,13 @@ package workshop.day07_jdi.pages;
 
 import com.epam.jdi.uitests.core.interfaces.common.IButton;
 import com.epam.jdi.uitests.core.interfaces.complex.IDropDown;
-import com.epam.jdi.uitests.core.interfaces.complex.IDropList;
 import com.epam.jdi.uitests.web.selenium.elements.base.Element;
 import com.epam.jdi.uitests.web.selenium.elements.complex.Elements;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JFindBy;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JDropdown;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.simple.Css;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import workshop.day07_jdi.enums.ColorsEnum;
 import workshop.day07_jdi.enums.MetalsEnum;
@@ -16,8 +17,9 @@ import workshop.day07_jdi.sections.ElementsCheckbox;
 import workshop.day07_jdi.sections.SummaryRadioButton;
 
 import java.util.Arrays;
+import java.util.List;
 
-import static com.epam.web.matcher.testng.Assert.assertContains;
+import static com.epam.web.matcher.junit.Assert.assertContains;
 import static workshop.day07_jdi.JdiSite.resultsLog;
 
 public class MetalsColors extends CommonPage  {
@@ -31,26 +33,23 @@ public class MetalsColors extends CommonPage  {
     @JDropdown(
             jroot = @JFindBy(css = ".colors"),
             jlist = @JFindBy(tagName = "li"),
-            jvalue = @JFindBy(css = ".filter-option")
-    )
+            jvalue = @JFindBy(css = ".filter-option"))
     private IDropDown<ColorsEnum> colors;
 
     @JDropdown(
             jroot = @JFindBy(css = ".metals"),
             jlist = @JFindBy(tagName = "li"),
-            value = @FindBy(css = ".caret")
-    )
+            value = @FindBy(css = ".caret"))
     private IDropDown<MetalsEnum> metals;
 
     @JDropdown(
-            jroot = @JFindBy(xpath = ".salad"),
+            jroot = @JFindBy(css = ".salad"),
             jlist = @JFindBy(tagName = "li"),
-            jexpand = @JFindBy(tagName = "button")
-    )
-    private IDropList <VegetablesEnum> vegetables;
+            value = @FindBy(css = ".caret"))
+    private IDropDown <VegetablesEnum> vegetables;
 
-    @JFindBy(id = "salad-dropdown")
-    public IButton button;
+    @Css(".salad a *:checked")
+    private List<WebElement> checkedVegetables;
 
     @Css("#submit-button")
     private IButton submit;
@@ -98,9 +97,8 @@ public class MetalsColors extends CommonPage  {
      * @param toSelect by names
      */
     public void selectVegetables(VegetablesEnum... toSelect) {
-
-        button.click();
-        vegetables.clear();
+        vegetables.expand();
+        checkedVegetables.forEach(c -> c.findElement(By.xpath("..")).click());
 
         Arrays.stream(toSelect)
                 .forEach(v -> vegetables.select(v));
@@ -114,6 +112,6 @@ public class MetalsColors extends CommonPage  {
     }
 
     public void checkResults() {
-        assertContains(() -> resultsLog.getFirstText(), "Summary: 9");
+        assertContains(() -> resultsLog.getFirstText(), "Summary: 11");
     }
 }
