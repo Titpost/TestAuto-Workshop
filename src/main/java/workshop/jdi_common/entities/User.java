@@ -1,19 +1,12 @@
 package workshop.jdi_common.entities;
 
 import com.epam.commons.DataClass;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-
-/*@AllArgsConstructor*/
-// TODO lombok ??
+@NoArgsConstructor
+@AllArgsConstructor
 public class User extends DataClass<User> {
     public String login;
     public String password;
-
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
-
-    public User() {
-    }
 }

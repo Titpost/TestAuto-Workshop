@@ -6,9 +6,7 @@ import com.epam.jdi.uitests.web.selenium.elements.composite.Form;
 import org.openqa.selenium.support.FindBy;
 import workshop.jdi_common.entities.User;
 
-/**
- * Created by Tit.
- */
+
 public class LoginForm extends Form<User> {
     @FindBy(id = "Login")
     private ITextField login;

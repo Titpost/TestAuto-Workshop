@@ -4,12 +4,12 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import workshop.base.JdiTestsBase;
-import workshop.jdi_common.entities.User;
 
 import static workshop.day07_jdi.JdiSite.header;
 import static workshop.day07_jdi.JdiSite.headerMenu;
 import static workshop.day07_jdi.JdiSite.loginPage;
 import static workshop.day07_jdi.JdiSite.metalsColorsPage;
+import static workshop.jdi_common.entities.Users.DEFAULT;
 import static workshop.jdi_common.enums.ColorsEnum.Red;
 import static workshop.jdi_common.enums.HeaderMenu.METALS$COLORS;
 import static workshop.jdi_common.enums.MetalsEnum.Selen;
@@ -23,21 +23,22 @@ public class ElementsTests extends JdiTestsBase {
     public void before() {
         loginPage.shouldBeOpened();
 
-        // TODO create constant on User class for this purpose, cause you should divide data layer and test layer.
-        // TODO imagine that you have more than one User...
+        // DONE create constant on User class for this purpose, cause you should divide data layer and test layer.
+        // DONE imagine that you have more than one User...
         // Login on JDI site as User
-        header.loginAs(new User("epam", "1234"));
+        header.loginAs(DEFAULT);
 
-        // TODO russian ? really ?
-        // TODO this approach might lead us to conflicts with customer/colleagues, i assume you clearly understand that
-        // TODO this method will work in case if we trying to open sub-menu...
-        // FIXED: 'и' -> '$'
+        // DONE russian ? really ?
+        // DONE this approach might lead us to conflicts with customer/colleagues, i assume you clearly understand that
+        // DONE this method will work in case if we trying to open sub-menu...
+        // DONE: 'и' -> '$'
         // Open Metals & Colors page by Header menu
         headerMenu.select(METALS$COLORS);
         metalsColorsPage.checkOpened();
     }
 
-    // TODO you should fill this with EntityDriving testing approach
+    // DONE you should fill this with EntityDriving testing approach
+    // This is gonna appear in day08, isn't it?
     @Test
     public void selectRadios() {
         // Summary: 3, 8
