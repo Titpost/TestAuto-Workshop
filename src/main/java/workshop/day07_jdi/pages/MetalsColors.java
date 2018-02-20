@@ -10,11 +10,12 @@ import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.simple
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import workshop.day07_jdi.enums.ColorsEnum;
-import workshop.day07_jdi.enums.MetalsEnum;
-import workshop.day07_jdi.enums.VegetablesEnum;
+import workshop.jdi_common.enums.ColorsEnum;
+import workshop.jdi_common.enums.MetalsEnum;
+import workshop.jdi_common.enums.VegetablesEnum;
 import workshop.day07_jdi.sections.ElementsCheckbox;
 import workshop.day07_jdi.sections.SummaryRadioButton;
+import workshop.jdi_common.pages.CommonPage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,12 +24,12 @@ import static com.epam.web.matcher.junit.Assert.assertContains;
 import static enums.differentElementsPage.CheckboxLabelsEnum.CHECKBOXES_FIRE;
 import static enums.differentElementsPage.CheckboxLabelsEnum.CHECKBOXES_WATER;
 import static workshop.day07_jdi.JdiSite.results;
-import static workshop.day07_jdi.enums.ColorsEnum.Red;
-import static workshop.day07_jdi.enums.MetalsEnum.Selen;
-import static workshop.day07_jdi.enums.VegetablesEnum.Cucumber;
-import static workshop.day07_jdi.enums.VegetablesEnum.Tomato;
+import static workshop.jdi_common.enums.ColorsEnum.Red;
+import static workshop.jdi_common.enums.MetalsEnum.Selen;
+import static workshop.jdi_common.enums.VegetablesEnum.Cucumber;
+import static workshop.jdi_common.enums.VegetablesEnum.Tomato;
 
-public class MetalsColors extends CommonPage  {
+public class MetalsColors extends CommonPage {
 
     @Css(".info-panel-section .radio")
     private Elements<SummaryRadioButton> radios;

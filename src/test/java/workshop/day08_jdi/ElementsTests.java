@@ -1,4 +1,4 @@
-package workshop.day07_jdi;
+package workshop.day08_jdi;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import workshop.base.JdiTestsBase;
 import workshop.jdi_common.entities.User;
 
-import static workshop.day07_jdi.JdiSite.*;
+import static workshop.day08_jdi.JdiSite.*;
 import static workshop.jdi_common.enums.ColorsEnum.Red;
 import static workshop.jdi_common.enums.HeaderMenu.METALSиCOLORS;
 import static workshop.jdi_common.enums.MetalsEnum.Selen;
