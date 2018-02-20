@@ -28,8 +28,15 @@ import static workshop.jdi_common.enums.MetalsEnum.Selen;
 import static workshop.jdi_common.enums.VegetablesEnum.Cucumber;
 import static workshop.jdi_common.enums.VegetablesEnum.Tomato;
 
-public class MetalsColors extends CommonPage {
+// TODO do you have a chance to format the code ?
+// TODO this code does not match with convention...
+public class MetalsColors extends CommonPage  {
 
+    // TODO take a look on
+    // TODO RadioButtons.class
+    // TODO CheckList.class
+
+    // TODO anyway, you create two exactly the same classes - SummaryRadioButton, ElementsCheckbox
     @Css(".info-panel-section .radio")
     private Elements<SummaryRadioButton> radios;
 
@@ -103,11 +110,13 @@ public class MetalsColors extends CommonPage {
      * @param toSelect by names
      */
     public void selectVegetables(VegetablesEnum... toSelect) {
+        // TODO encapsulate this behavior in UI Element class...
         vegetables.expand();
         checkedVegetables.forEach(c -> c.findElement(By.xpath("..")).click());
 
         Arrays.stream(toSelect)
                 .forEach(v -> vegetables.select(v));
+        // !TODO
     }
 
     /**
@@ -120,8 +129,8 @@ public class MetalsColors extends CommonPage {
     /**
      * Check results section
      */
+    // TODO take a look on Entity Driving testing, expected/actual object required...
     public void checkResults() {
-
         Arrays.stream(results.getFirstText().split("\n"))
                 .map(l -> l.split(": "))
                 .forEach(entry -> {
