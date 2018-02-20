@@ -20,14 +20,20 @@ public class ElementsTests extends JdiTestsBase {
     public void before() {
         loginPage.shouldBeOpened();
 
+        // TODO create constant on User class for this purpose, cause you should divide data layer and test layer.
+        // TODO imagine that you have more than one User...
         // Login on JDI site as User
         header.loginAs(new User("epam", "1234"));
 
+        // TODO russian ? really ?
+        // TODO this approach might lead us to conflicts with customer/colleagues, i assume you clearly understand that
+        // TODO this method will work in case if we trying to open sub-menu...
         // Open Metals & Colors page by Header menu
         headerMenu.select(METALSиCOLORS);
         metalsColorsPage.checkOpened();
     }
 
+    // TODO you should fill this with EntityDriving testing approach
     @Test
     public void selectRadios() {
         // Summary: 3, 8
@@ -57,6 +63,7 @@ public class ElementsTests extends JdiTestsBase {
         // Vegetables: Cucumber,Tomato
         metalsColorsPage.selectVegetables(Cucumber, Tomato);
     }
+    // !TODO
 
     @AfterClass
     public void after() {
