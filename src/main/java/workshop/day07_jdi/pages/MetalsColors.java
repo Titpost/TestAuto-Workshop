@@ -9,12 +9,11 @@ import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.object
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.simple.Css;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import workshop.day07_jdi.sections.ElementsCheckbox;
+import workshop.day07_jdi.sections.SummaryRadioButton;
 import workshop.jdi_common.enums.ColorsEnum;
 import workshop.jdi_common.enums.MetalsEnum;
 import workshop.jdi_common.enums.VegetablesEnum;
-import workshop.day07_jdi.sections.ElementsCheckbox;
-import workshop.day07_jdi.sections.SummaryRadioButton;
 import workshop.jdi_common.pages.CommonPage;
 
 import java.util.Arrays;
@@ -46,13 +45,13 @@ public class MetalsColors extends CommonPage {
     @JDropdown(
             jroot = @JFindBy(css = ".metals"),
             jlist = @JFindBy(tagName = "li"),
-            value = @FindBy(css = ".caret"))
+            jvalue = @JFindBy(css = ".caret"))
     private IDropDown<MetalsEnum> metals;
 
     @JDropdown(
             jroot = @JFindBy(css = ".salad"),
             jlist = @JFindBy(tagName = "li"),
-            value = @FindBy(css = ".caret"))
+            jvalue = @JFindBy(css = ".caret"))
     private IDropDown <VegetablesEnum> vegetables;
 
     @Css(".salad a *:checked")
