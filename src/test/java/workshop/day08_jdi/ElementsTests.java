@@ -1,17 +1,13 @@
 package workshop.day08_jdi;
 
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 import workshop.base.JdiTestsBase;
 import workshop.jdi_common.entities.User;
 
-import static workshop.day08_jdi.JdiSite.*;
-import static workshop.jdi_common.enums.ColorsEnum.Red;
-import static workshop.jdi_common.enums.HeaderMenu.METALSиCOLORS;
-import static workshop.jdi_common.enums.MetalsEnum.Selen;
-import static workshop.jdi_common.enums.VegetablesEnum.Cucumber;
-import static workshop.jdi_common.enums.VegetablesEnum.Tomato;
+import static workshop.day08_jdi.JdiSite.header;
+import static workshop.day08_jdi.JdiSite.headerMenu;
+import static workshop.day08_jdi.JdiSite.loginPage;
+import static workshop.jdi_common.enums.HeaderMenu.METALS$COLORS;
 
 
 public class ElementsTests extends JdiTestsBase {
@@ -24,7 +20,7 @@ public class ElementsTests extends JdiTestsBase {
         header.loginAs(new User("epam", "1234"));
 
         // Open Metals & Colors page by Header menu
-        headerMenu.select(METALSиCOLORS);
+        headerMenu.select(METALS$COLORS);
 //        metalsColorsPage.checkOpened();
     }
 /*
