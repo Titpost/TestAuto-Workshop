@@ -1,4 +1,4 @@
-package workshop.day07_jdi.pages;
+package workshop.jdi_common.pages;
 
 import com.epam.jdi.uitests.web.selenium.elements.composite.WebPage;
 

@@ -1,10 +1,10 @@
-package workshop.day07_jdi.forms;
+package workshop.jdi_common.forms;
 
 import com.epam.jdi.uitests.core.interfaces.common.IButton;
 import com.epam.jdi.uitests.core.interfaces.common.ITextField;
 import com.epam.jdi.uitests.web.selenium.elements.composite.Form;
 import org.openqa.selenium.support.FindBy;
-import workshop.day07_jdi.entities.User;
+import workshop.jdi_common.entities.User;
 
 /**
  * Created by Tit.

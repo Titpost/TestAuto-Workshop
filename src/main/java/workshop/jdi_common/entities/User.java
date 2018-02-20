@@ -1,4 +1,4 @@
-package workshop.day07_jdi.entities;
+package workshop.jdi_common.entities;
 
 import com.epam.commons.DataClass;
 

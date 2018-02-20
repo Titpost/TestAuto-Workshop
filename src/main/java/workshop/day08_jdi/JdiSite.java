@@ -1,4 +1,4 @@
-package workshop.day07_jdi;
+package workshop.day08_jdi;
 
 import com.epam.jdi.uitests.web.selenium.elements.complex.Menu;
 import com.epam.jdi.uitests.web.selenium.elements.complex.TextList;
@@ -11,15 +11,16 @@ import workshop.day07_jdi.pages.MetalsColors;
 import workshop.jdi_common.sections.Header;
 import workshop.jdi_common.LoginPage;
 
+
 @JSite("https://epam.github.io/JDI")
 public class JdiSite extends WebSite {
 
     @JPage(url = "/index.html")
     static LoginPage loginPage;
-
+/*
     @JPage("/metals-colors.html")
     static MetalsColors metalsColorsPage;
-
+*/
     @Css(".m-l8")
     static Menu<HeaderMenu> headerMenu;
 

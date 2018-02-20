@@ -1,4 +1,4 @@
-package workshop.day07_jdi.enums;
+package workshop.jdi_common.enums;
 
 /**
  * Created by Tit.

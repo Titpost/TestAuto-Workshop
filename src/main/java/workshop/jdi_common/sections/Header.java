@@ -1,10 +1,10 @@
-package workshop.day07_jdi.sections;
+package workshop.jdi_common.sections;
 
 import com.epam.jdi.uitests.core.interfaces.base.IClickable;
 import com.epam.jdi.uitests.web.selenium.elements.composite.Section;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.simple.Css;
-import workshop.day07_jdi.entities.User;
-import workshop.day07_jdi.forms.LoginForm;
+import workshop.jdi_common.entities.User;
+import workshop.jdi_common.forms.LoginForm;
 
 
 public class Header extends Section {
