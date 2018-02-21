@@ -1,10 +1,10 @@
-package workshop.base;
+package workshop.day08_jdi.base;
 
 import com.epam.jdi.uitests.web.selenium.elements.composite.WebSite;
 import com.epam.jdi.uitests.web.testng.testRunner.TestNGBase;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-import workshop.day07_jdi.JdiSite;
+import workshop.day08_jdi.JdiSite;
 
 import java.io.IOException;
 

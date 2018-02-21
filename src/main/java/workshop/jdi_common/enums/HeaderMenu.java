@@ -8,6 +8,8 @@ public enum HeaderMenu {
 
     @Override
     public String toString() {
-        return name().replaceAll("\\$", " & ");
+        return name()
+                .replaceAll("\\$", " & ")
+                .replaceAll("_", " ");
     }
 }

@@ -1,13 +1,15 @@
 package workshop.day08_jdi;
 
 import org.testng.annotations.BeforeClass;
-import workshop.base.JdiTestsBase;
-import workshop.jdi_common.entities.User;
+import org.testng.annotations.Test;
+import workshop.day08_jdi.base.JdiTestsBase;
 
-import static workshop.day08_jdi.JdiSite.header;
-import static workshop.day08_jdi.JdiSite.headerMenu;
-import static workshop.day08_jdi.JdiSite.loginPage;
+import static workshop.day08_jdi.JdiSite.*;
+import static workshop.jdi_common.entities.Users.DEFAULT;
+import static workshop.jdi_common.enums.ElementsEnum.FIRE;
+import static workshop.jdi_common.enums.ElementsEnum.WATER;
 import static workshop.jdi_common.enums.HeaderMenu.METALS$COLORS;
+import static workshop.jdi_common.enums.MetalsEnum.Selen;
 
 
 public class ElementsTests extends JdiTestsBase {
@@ -17,7 +19,7 @@ public class ElementsTests extends JdiTestsBase {
         loginPage.shouldBeOpened();
 
         // Login on JDI site as User
-        header.loginAs(new User("epam", "1234"));
+        header.loginAs(DEFAULT);
 
         // Open Metals & Colors page by Header menu
         headerMenu.select(METALS$COLORS);
@@ -29,25 +31,25 @@ public class ElementsTests extends JdiTestsBase {
         // Summary: 3, 8
         metalsColorsPage.selectRadios("3", "8");
     }
-
+*/
     @Test
     public void selectCheckboxes() {
         // Elements: Water, Fire
-        metalsColorsPage.selectCheckboxes("Water", "Fire");
+        metalsColorsPage.selectElements(WATER, FIRE);
     }
-
+/*
     @Test
     public void selectColor() {
         // Colors: Red
         metalsColorsPage.selectColor(Red);
     }
-
+*/
     @Test
     public void selectMetal() {
         // Metals: Selen
         metalsColorsPage.selectMetal(Selen);
     }
-
+/*
     @Test
     public void selectVegetables() {
         // Vegetables: Cucumber,Tomato

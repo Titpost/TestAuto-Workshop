@@ -3,7 +3,7 @@ package workshop.day07_jdi;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import workshop.base.JdiTestsBase;
+import workshop.day07_jdi.base.JdiTestsBase;
 
 import static workshop.day07_jdi.JdiSite.*;
 import static workshop.jdi_common.entities.Users.DEFAULT;

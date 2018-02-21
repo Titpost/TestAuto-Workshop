@@ -1,16 +1,13 @@
 package workshop.day08_jdi.pages;
 
-import com.epam.jdi.uitests.core.annotations.Name;
 import com.epam.jdi.uitests.core.interfaces.common.ILabel;
 import com.epam.jdi.uitests.core.interfaces.common.IText;
 import com.epam.jdi.uitests.core.interfaces.complex.ICheckList;
 import com.epam.jdi.uitests.core.interfaces.complex.IComboBox;
 import com.epam.jdi.uitests.core.interfaces.complex.IDropDown;
-import com.epam.jdi.uitests.web.selenium.elements.base.Element;
 import com.epam.jdi.uitests.web.selenium.elements.common.Button;
-import com.epam.jdi.uitests.web.selenium.elements.common.CheckBox;
 import com.epam.jdi.uitests.web.selenium.elements.common.Label;
-import com.epam.jdi.uitests.web.selenium.elements.common.Text;
+import com.epam.jdi.uitests.web.selenium.elements.complex.CheckList;
 import com.epam.jdi.uitests.web.selenium.elements.complex.ComboBox;
 import com.epam.jdi.uitests.web.selenium.elements.complex.Dropdown;
 import com.epam.jdi.uitests.web.selenium.elements.composite.WebPage;
@@ -20,9 +17,11 @@ import org.openqa.selenium.support.FindBy;
 import workshop.jdi_common.enums.ElementsEnum;
 import workshop.jdi_common.enums.MetalsEnum;
 
+import java.util.Arrays;
+
 public class MetalsColorsPage extends WebPage {
 
-    @Name("Metals")
+    //@Name("Metals")
     //private Metalls metals;
 
     //@FindBy(id = "summary-block")
@@ -37,33 +36,39 @@ public class MetalsColorsPage extends WebPage {
     @FindBy(id = "calculate-button")
     public ILabel calculateLabel;
 
-    public IDropDown<Colors> colors = new Dropdown<>(By.cssSelector(".colors .filter-option"),
-            By.cssSelector(".colors li span"));
+    public IDropDown<Colors> colors = new Dropdown<>(
+            By.cssSelector(".colors .filter-option"),
+            By.cssSelector(".colors li span")
+    );
 
     @FindBy(css = ".summ-res")
     public IText calculateText;
 
-    @FindBy(css = "#elements-checklist label")
-    public ICheckList<ElementsEnum> nature;
+    @FindBy(css = "#elements-checklist p")
+    public ICheckList<ElementsEnum> elements = new CheckList<>();
 
-    @FindBy(xpath = "//*[@id='elements-checklist']//*[label[text()='%s']]/label")
-    public ICheckList<ElementsEnum> natureTemplate;
+    @FindBy(css = ".metals li span")
+    public IComboBox<MetalsEnum> metals = new ComboBox<>(
+            By.cssSelector(".metals .caret"),
+            By.cssSelector(".metals li span"),
+            By.cssSelector(".metals input")
+    );
 
+    /**
+     * Click on every checkbox with label from "ids"
+     * @param ids - array of labels
+     */
+    public void selectElements(ElementsEnum... ids) {
+        elements.clear();
+        Arrays.stream(ids)
+                .forEach(e -> elements.select(e));
+    }
 
-    @FindBy(xpath = "//*[@id='elements-checklist']//*[text()='Water']")
-    public CheckBox cbWater = new CheckBox() {
-        @Override
-        protected boolean isCheckedAction() {
-            return new Element(By.xpath("//*[@id='elements-checklist']//*[*[text()='Water']]/input"))
-                    .getInvisibleElement().getAttribute("checked") != null;
-        }
-    };
-
-    public IComboBox<MetalsEnum> comboBox =
-            new ComboBox<MetalsEnum>(By.cssSelector(".metals .caret"), By.cssSelector(".metals li span"), By.cssSelector(".metals input")) {
-                @Override
-                protected String getTextAction() {
-                    return new Text(By.cssSelector(".metals .filter-option")).getText();
-                }
-            };
+    /**
+     * Select drop-down item (metal) by its name
+     * @param metal by name
+     */
+    public void selectMetal(MetalsEnum metal) {
+        metals.select(metal);
+    }
 }
