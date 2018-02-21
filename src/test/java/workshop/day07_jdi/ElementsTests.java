@@ -5,12 +5,11 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import workshop.base.JdiTestsBase;
 
-import static workshop.day07_jdi.JdiSite.header;
-import static workshop.day07_jdi.JdiSite.headerMenu;
-import static workshop.day07_jdi.JdiSite.loginPage;
-import static workshop.day07_jdi.JdiSite.metalsColorsPage;
+import static workshop.day07_jdi.JdiSite.*;
 import static workshop.jdi_common.entities.Users.DEFAULT;
 import static workshop.jdi_common.enums.ColorsEnum.Red;
+import static workshop.jdi_common.enums.ElementsEnum.FIRE;
+import static workshop.jdi_common.enums.ElementsEnum.WATER;
 import static workshop.jdi_common.enums.HeaderMenu.METALS$COLORS;
 import static workshop.jdi_common.enums.MetalsEnum.Selen;
 import static workshop.jdi_common.enums.VegetablesEnum.Cucumber;
@@ -48,7 +47,7 @@ public class ElementsTests extends JdiTestsBase {
     @Test
     public void selectCheckboxes() {
         // Elements: Water, Fire
-        metalsColorsPage.selectCheckboxes("Water", "Fire");
+        metalsColorsPage.selectCheckboxes(WATER, FIRE);
     }
 
     @Test

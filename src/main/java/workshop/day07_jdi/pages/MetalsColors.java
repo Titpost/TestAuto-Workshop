@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import workshop.day07_jdi.sections.ElementsCheckbox;
 import workshop.day07_jdi.sections.SummaryRadioButton;
 import workshop.jdi_common.enums.ColorsEnum;
+import workshop.jdi_common.enums.ElementsEnum;
 import workshop.jdi_common.enums.MetalsEnum;
 import workshop.jdi_common.enums.VegetablesEnum;
 import workshop.jdi_common.pages.CommonPage;
@@ -19,7 +20,7 @@ import workshop.jdi_common.pages.CommonPage;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.epam.web.matcher.junit.Assert.assertContains;
+import static com.epam.web.matcher.junit.Assert.assertEquals;
 import static enums.differentElementsPage.CheckboxLabelsEnum.CHECKBOXES_FIRE;
 import static enums.differentElementsPage.CheckboxLabelsEnum.CHECKBOXES_WATER;
 import static workshop.day07_jdi.JdiSite.results;
@@ -82,7 +83,7 @@ public class MetalsColors extends CommonPage  {
      * Click on every checkbox with label from "ids"
      * @param ids - array of labels
      */
-    public void selectCheckboxes(String... ids) {
+    public void selectCheckboxes(ElementsEnum... ids) {
         checkboxes.stream()
                 .filter(r -> Arrays.asList(ids).contains(r.label.getText()))
                 .forEach(Element::clickCenter);
@@ -136,24 +137,24 @@ public class MetalsColors extends CommonPage  {
                 .forEach(entry -> {
                     switch (entry[0]) {
                         case "Summary" :
-                            assertContains(entry[1], "11");
+                            assertEquals(entry[1], "11");
                             break;
 
                         case "Elements" :
-                            assertContains(entry[1], String.join(", ",
+                            assertEquals(entry[1], String.join(", ",
                                     CHECKBOXES_WATER.label, CHECKBOXES_FIRE.label));
                             break;
 
                         case "Color" :
-                            assertContains(entry[1], Red.name());
+                            assertEquals(entry[1], Red.name());
                             break;
 
                         case "Metal" :
-                            assertContains(entry[1], Selen.name());
+                            assertEquals(entry[1], Selen.name());
                             break;
 
                         case "Vegetables" :
-                            assertContains(entry[1], String.join(", ",
+                            assertEquals(entry[1], String.join(", ",
                                     Cucumber.name(), Tomato.name()));
                     }
                 });
