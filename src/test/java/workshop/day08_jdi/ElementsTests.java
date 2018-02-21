@@ -1,5 +1,6 @@
 package workshop.day08_jdi;
 
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import workshop.day08_jdi.base.JdiTestsBase;
@@ -13,6 +14,8 @@ import static workshop.jdi_common.enums.ElementsEnum.FIRE;
 import static workshop.jdi_common.enums.ElementsEnum.WATER;
 import static workshop.jdi_common.enums.HeaderMenu.METALS$COLORS;
 import static workshop.jdi_common.enums.MetalsEnum.Selen;
+import static workshop.jdi_common.enums.VegetablesEnum.Cucumber;
+import static workshop.jdi_common.enums.VegetablesEnum.Tomato;
 
 
 public class ElementsTests extends JdiTestsBase {
@@ -52,7 +55,7 @@ public class ElementsTests extends JdiTestsBase {
         // Metals: Selen
         metalsColorsPage.selectMetal(Selen);
     }
-/*
+
     @Test
     public void selectVegetables() {
         // Vegetables: Cucumber,Tomato
@@ -64,6 +67,6 @@ public class ElementsTests extends JdiTestsBase {
         // Submit form Metals & Colors
         metalsColorsPage.submit();
         // Result sections should contains data
-        metalsColorsPage.checkResults();
-    }*/
+        //metalsColorsPage.checkResults();
+    }
 }

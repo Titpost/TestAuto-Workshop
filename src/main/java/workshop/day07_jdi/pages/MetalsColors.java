@@ -36,8 +36,10 @@ public class MetalsColors extends CommonPage  {
     // TODO take a look on
     // TODO RadioButtons.class
     // TODO CheckList.class
+    // DONE is day08
 
     // TODO anyway, you create two exactly the same classes - SummaryRadioButton, ElementsCheckbox
+    // DONE. Yepp, occasionaly. But that is because day07 was about sections.
     @Css(".info-panel-section .radio")
     private Elements<SummaryRadioButton> radios;
 
@@ -51,19 +53,18 @@ public class MetalsColors extends CommonPage  {
     private IDropDown<ColorsEnum> colors;
 
     @JDropdown(
-            jroot = @JFindBy(css = ".metals"),
-            jlist = @JFindBy(tagName = "li"),
-            jvalue = @JFindBy(css = ".caret"))
-    private IDropDown<MetalsEnum> metals;
-
-    @JDropdown(
             jroot = @JFindBy(css = ".salad"),
             jlist = @JFindBy(tagName = "li"),
             jvalue = @JFindBy(css = ".caret"))
     private IDropDown <VegetablesEnum> vegetables;
-
     @Css(".salad a *:checked")
     private List<WebElement> checkedVegetables;
+
+    @JDropdown(
+            jroot = @JFindBy(css = ".metals"),
+            jlist = @JFindBy(tagName = "li"),
+            jvalue = @JFindBy(css = ".caret"))
+    private IDropDown<MetalsEnum> metals;
 
     @Css("#submit-button")
     private IButton submit;
@@ -112,6 +113,7 @@ public class MetalsColors extends CommonPage  {
      */
     public void selectVegetables(VegetablesEnum... toSelect) {
         // TODO encapsulate this behavior in UI Element class...
+        // DONE in day08
         vegetables.expand();
         checkedVegetables.forEach(c -> c.findElement(By.xpath("..")).click());
 
