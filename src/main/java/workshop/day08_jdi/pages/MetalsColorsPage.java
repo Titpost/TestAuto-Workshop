@@ -12,26 +12,31 @@ import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.simple
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 import workshop.day08_jdi.sections.Summary;
-import workshop.jdi_common.enums.*;
+import workshop.day08_jdi.sections.Vegetables;
+import workshop.jdi_common.enums.ColorsEnum;
+import workshop.jdi_common.enums.DigitsEnum;
+import workshop.jdi_common.enums.ElementsEnum;
+import workshop.jdi_common.enums.MetalsEnum;
+import workshop.jdi_common.enums.VegetablesEnum;
 
 import java.util.Arrays;
 
+import static com.epam.web.matcher.junit.Assert.assertEquals;
+import static enums.differentElementsPage.CheckboxLabelsEnum.CHECKBOXES_FIRE;
+import static enums.differentElementsPage.CheckboxLabelsEnum.CHECKBOXES_WATER;
+import static workshop.day08_jdi.JdiSite.results;
+import static workshop.jdi_common.enums.ColorsEnum.Red;
+import static workshop.jdi_common.enums.MetalsEnum.Selen;
+import static workshop.jdi_common.enums.VegetablesEnum.Cucumber;
+import static workshop.jdi_common.enums.VegetablesEnum.Tomato;
+
 public class MetalsColorsPage extends WebPage {
 
-   /* @FindBy(css = ".summ-res")
-    public IText calculateText;
+    @Css("#summary-block")
+    private Summary summary;
 
-    @FindBy(id = "calculate-button")
-    public Label calculate;
-
-    @FindBy(id = "calculate-button")
-    public Button calculateButton;
-
-    @FindBy(id = "calculate-button")
-    public ILabel calculateLabel;*/
-
-    @FindBy(id = "summary-block")
-    public Summary summary;
+    @Css(".form-group.salad")
+    private Vegetables vegetables;
 
     @JDropdown(
             jroot = @JFindBy(css = ".colors"),
@@ -40,18 +45,11 @@ public class MetalsColorsPage extends WebPage {
     private IDropDown<ColorsEnum> colors;
 
     @FindBy(css = "#elements-checklist p")
-    public ICheckList<ElementsEnum> elements;
+    private ICheckList<ElementsEnum> elements;
 
-    @FindBy(css = ".salad li label")
-    public ICheckList<ElementsEnum> salads;
-    @JDropdown(
-            jroot = @JFindBy(css = ".salad"),
-            jlist = @JFindBy(tagName = "li"),
-            jvalue = @JFindBy(css = ".caret"))
-    private IDropDown <VegetablesEnum> vegetables;
 
     @FindBy(css = ".metals li span")
-    public IComboBox<MetalsEnum> metals = new ComboBox<>(
+    private IComboBox<MetalsEnum> metals = new ComboBox<>(
             By.cssSelector(".metals .caret"),
             By.cssSelector(".metals li span"),
             By.cssSelector(".metals input")
@@ -76,7 +74,6 @@ public class MetalsColorsPage extends WebPage {
      * @param ids - array of labels
      */
     public void selectElements(ElementsEnum... ids) {
-        elements.clear();
         Arrays.stream(ids)
                 .forEach(e -> elements.select(e));
     }
@@ -102,15 +99,8 @@ public class MetalsColorsPage extends WebPage {
      * (vegetables) by its name
      * @param toSelect by names
      */
-    public void selectVegetables(VegetablesEnum... toSelect) {
-        // TODO encapsulate this behavior in UI Element class...
-        vegetables.expand();
-        salads.clear();
-        //.forEach(c -> c.findElement(By.xpath("..")).click());
-
-        Arrays.stream(toSelect)
-                .forEach(v -> vegetables.select(v));
-        // !TODO
+    public void selectNewVegetables(VegetablesEnum... toSelect) {
+        vegetables.selectNew(toSelect);
     }
 
     /**
@@ -118,6 +108,39 @@ public class MetalsColorsPage extends WebPage {
      */
     public void submit() {
         submit.click();
-        //checkResults();
+        checkResults();
+    }
+
+    /**
+     * Check results section
+     */
+    // TODO take a look on Entity Driving testing, expected/actual object required...
+    public void checkResults() {
+        Arrays.stream(results.getFirstText().split("\n"))
+                .map(l -> l.split(": "))
+                .forEach(entry -> {
+                    switch (entry[0]) {
+                        case "Summary" :
+                            assertEquals(entry[1], "11");
+                            break;
+
+                        case "Elements" :
+                            assertEquals(entry[1], String.join(", ",
+                                    CHECKBOXES_WATER.label, CHECKBOXES_FIRE.label));
+                            break;
+
+                        case "Color" :
+                            assertEquals(entry[1], Red.name());
+                            break;
+
+                        case "Metal" :
+                            assertEquals(entry[1], Selen.name());
+                            break;
+
+                        case "Vegetables" :
+                            assertEquals(entry[1], String.join(", ",
+                                    Cucumber.name(), Tomato.name()));
+                    }
+                });
     }
 }

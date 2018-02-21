@@ -5,7 +5,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import workshop.day08_jdi.base.JdiTestsBase;
 
-import static workshop.day08_jdi.JdiSite.*;
+import static workshop.day08_jdi.JdiSite.header;
+import static workshop.day08_jdi.JdiSite.headerMenu;
+import static workshop.day08_jdi.JdiSite.loginPage;
+import static workshop.day08_jdi.JdiSite.metalsColorsPage;
 import static workshop.jdi_common.entities.Users.DEFAULT;
 import static workshop.jdi_common.enums.ColorsEnum.Red;
 import static workshop.jdi_common.enums.DigitsEnum.EIGHT;
@@ -59,7 +62,7 @@ public class ElementsTests extends JdiTestsBase {
     @Test
     public void selectVegetables() {
         // Vegetables: Cucumber,Tomato
-        metalsColorsPage.selectVegetables(Cucumber, Tomato);
+        metalsColorsPage.selectNewVegetables(Cucumber, Tomato);
     }
 
     @AfterClass
@@ -67,6 +70,6 @@ public class ElementsTests extends JdiTestsBase {
         // Submit form Metals & Colors
         metalsColorsPage.submit();
         // Result sections should contains data
-        //metalsColorsPage.checkResults();
+        metalsColorsPage.checkResults();
     }
 }
