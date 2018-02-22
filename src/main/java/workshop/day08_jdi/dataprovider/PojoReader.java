@@ -17,7 +17,7 @@ public class PojoReader {
                 .fromJson(jsonString, new TypeToken<ArrayList<Pojo>>(){}.getType() );
     }
 
-    public static String readData() {
+    public static String readFromResource() {
         return new BufferedReader(
                 new InputStreamReader(
                         PojoReader.class

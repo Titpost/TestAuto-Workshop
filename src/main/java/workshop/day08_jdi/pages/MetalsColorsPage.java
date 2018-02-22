@@ -11,26 +11,24 @@ import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.object
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.simple.Css;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
+import workshop.day08_jdi.dataprovider.Pojo;
 import workshop.day08_jdi.sections.Summary;
 import workshop.day08_jdi.sections.Vegetables;
 import workshop.jdi_common.enums.ColorsEnum;
-import workshop.jdi_common.enums.DigitsEnum;
 import workshop.jdi_common.enums.ElementsEnum;
 import workshop.jdi_common.enums.MetalsEnum;
-import workshop.jdi_common.enums.VegetablesEnum;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static com.epam.web.matcher.junit.Assert.assertEquals;
-import static enums.differentElementsPage.CheckboxLabelsEnum.CHECKBOXES_FIRE;
-import static enums.differentElementsPage.CheckboxLabelsEnum.CHECKBOXES_WATER;
+import static java.util.stream.Collectors.joining;
 import static workshop.day08_jdi.JdiSite.results;
-import static workshop.jdi_common.enums.ColorsEnum.Red;
-import static workshop.jdi_common.enums.MetalsEnum.Selen;
-import static workshop.jdi_common.enums.VegetablesEnum.Cucumber;
-import static workshop.jdi_common.enums.VegetablesEnum.Tomato;
 
 public class MetalsColorsPage extends WebPage {
+
+    final static int result_key = 0;
+    final static int result_value = 1;
 
     @Css("#summary-block")
     private Summary summary;
@@ -63,26 +61,23 @@ public class MetalsColorsPage extends WebPage {
      * Click on every radio-button with label from "digits"
      * @param digits - array of labels
      */
-    public void selectSummary(DigitsEnum... digits) {
-        Arrays.stream(digits)
-                .forEach(digit ->
-                    summary.select(String.valueOf(digit.ordinal())));
+    public void selectSummary(List<Integer> digits) {
+        digits.forEach(digit -> summary.select(String.valueOf(digit)));
     }
 
     /**
      * Click on every checkbox with label from "ids"
      * @param ids - array of labels
      */
-    public void selectElements(ElementsEnum... ids) {
-        Arrays.stream(ids)
-                .forEach(e -> elements.select(e));
+    public void selectElements(List<String> ids) {
+        ids.forEach(e -> elements.select(e));
     }
 
     /**
      * Select drop-down item (color) by its name
      * @param color by name
      */
-    public void selectColor(ColorsEnum color) {
+    public void selectColor(String color) {
         colors.select(color);
     }
 
@@ -90,7 +85,7 @@ public class MetalsColorsPage extends WebPage {
      * Select drop-down item (metal) by its name
      * @param metal by name
      */
-    public void selectMetal(MetalsEnum metal) {
+    public void selectMetal(String metal) {
         metals.select(metal);
     }
 
@@ -99,8 +94,8 @@ public class MetalsColorsPage extends WebPage {
      * (vegetables) by its name
      * @param toSelect by names
      */
-    public void selectNewVegetables(VegetablesEnum... toSelect) {
-        vegetables.selectNew(toSelect);
+    public void selectNewVegetables(List<String> toSelect) {
+        //vegetables.selectNew(toSelect);
     }
 
     /**
@@ -108,38 +103,42 @@ public class MetalsColorsPage extends WebPage {
      */
     public void submit() {
         submit.click();
-        checkResults();
     }
 
     /**
      * Check results section
      */
     // TODO take a look on Entity Driving testing, expected/actual object required...
-    public void checkResults() {
+    public void checkResults(Pojo pogo) {
         Arrays.stream(results.getFirstText().split("\n"))
                 .map(l -> l.split(": "))
                 .forEach(entry -> {
-                    switch (entry[0]) {
+                    switch (entry[result_key]) {
                         case "Summary" :
-                            assertEquals(entry[1], "11");
+                            // there were no summary-check supplied within JSON file
+                            //assertEquals(entry[1], "11");
                             break;
 
                         case "Elements" :
-                            assertEquals(entry[1], String.join(", ",
-                                    CHECKBOXES_WATER.label, CHECKBOXES_FIRE.label));
+                            assertEquals(
+                                    entry[result_value],
+                                    pogo.elements.stream().collect(joining(", "))
+                            );
                             break;
 
                         case "Color" :
-                            assertEquals(entry[1], Red.name());
+                            assertEquals(entry[result_value], pogo.color);
                             break;
 
                         case "Metal" :
-                            assertEquals(entry[1], Selen.name());
+                            assertEquals(entry[result_value], pogo.metals);
                             break;
 
                         case "Vegetables" :
-                            assertEquals(entry[1], String.join(", ",
-                                    Cucumber.name(), Tomato.name()));
+//                            assertEquals(
+//                                    entry[result_value],
+//                                    pogo.vegetables.stream().collect(joining(", "))
+//                            );
                     }
                 });
     }

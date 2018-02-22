@@ -27,11 +27,11 @@ public class Vegetables extends Section {
     @Css(".salad a *:checked")
     private List<WebElement> checkedVegetables;
 
-    public void expand() {
+    private void expand() {
         vegetables.expand();
     }
 
-    public void clear() {
+    private void clear() {
         checkedVegetables.forEach(c -> c.findElement(By.xpath("..")).click());
     }
 
