@@ -24,11 +24,12 @@ import java.util.List;
 import static com.epam.web.matcher.junit.Assert.assertEquals;
 import static java.util.stream.Collectors.joining;
 import static workshop.day08_jdi.JdiSite.results;
+import static workshop.jdi_common.utils.Strings.isEmpty;
 
 public class MetalsColorsPage extends WebPage {
 
-    final static int result_key = 0;
-    final static int result_value = 1;
+    private final static int result_key = 0;
+    private final static int result_value = 1;
 
     @Css("#summary-block")
     private Summary summary;
@@ -78,6 +79,9 @@ public class MetalsColorsPage extends WebPage {
      * @param color by name
      */
     public void selectColor(String color) {
+        if (isEmpty(color)) {
+            return;
+        }
         colors.select(color);
     }
 
@@ -86,6 +90,9 @@ public class MetalsColorsPage extends WebPage {
      * @param metal by name
      */
     public void selectMetal(String metal) {
+        if (isEmpty(metal)) {
+            return;
+        }
         metals.select(metal);
     }
 
@@ -95,7 +102,7 @@ public class MetalsColorsPage extends WebPage {
      * @param toSelect by names
      */
     public void selectNewVegetables(List<String> toSelect) {
-        //vegetables.selectNew(toSelect);
+        vegetables.selectNew(toSelect);
     }
 
     /**
@@ -108,7 +115,6 @@ public class MetalsColorsPage extends WebPage {
     /**
      * Check results section
      */
-    // TODO take a look on Entity Driving testing, expected/actual object required...
     public void checkResults(Pojo pogo) {
         Arrays.stream(results.getFirstText().split("\n"))
                 .map(l -> l.split(": "))
@@ -127,18 +133,22 @@ public class MetalsColorsPage extends WebPage {
                             break;
 
                         case "Color" :
-                            assertEquals(entry[result_value], pogo.color);
+                            if (!isEmpty(pogo.color)) {
+                                assertEquals(entry[result_value], pogo.color);
+                            }
                             break;
 
                         case "Metal" :
-                            assertEquals(entry[result_value], pogo.metals);
+                            if (!isEmpty(pogo.metals)) {
+                                assertEquals(entry[result_value], pogo.metals);
+                            }
                             break;
 
                         case "Vegetables" :
-//                            assertEquals(
-//                                    entry[result_value],
-//                                    pogo.vegetables.stream().collect(joining(", "))
-//                            );
+                            assertEquals(
+                                    entry[result_value],
+                                    pogo.vegetables.stream().collect(joining(", "))
+                            );
                     }
                 });
     }

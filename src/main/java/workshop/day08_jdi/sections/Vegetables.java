@@ -11,7 +11,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import workshop.jdi_common.enums.VegetablesEnum;
 
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -35,12 +34,11 @@ public class Vegetables extends Section {
         checkedVegetables.forEach(c -> c.findElement(By.xpath("..")).click());
     }
 
-    public void select(VegetablesEnum... toSelect) {
-        Arrays.stream(toSelect)
-                .forEach(v -> salads.select(v));
+    public void select(List<String> toSelect) {
+        toSelect.forEach(v -> salads.select(v));
     }
 
-    public void selectNew(VegetablesEnum... toSelect) {
+    public void selectNew(List<String> toSelect) {
         expand();
         clear();
         select(toSelect);
