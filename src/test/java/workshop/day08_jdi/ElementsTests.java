@@ -4,11 +4,13 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import workshop.day08_jdi.base.JdiTestsBase;
+import workshop.day08_jdi.dataprovider.Pojo;
+import workshop.day08_jdi.dataprovider.PojoReader;
 
-import static workshop.day08_jdi.JdiSite.header;
-import static workshop.day08_jdi.JdiSite.headerMenu;
-import static workshop.day08_jdi.JdiSite.loginPage;
-import static workshop.day08_jdi.JdiSite.metalsColorsPage;
+import java.util.List;
+
+import static workshop.day08_jdi.JdiSite.*;
+import static workshop.day08_jdi.dataprovider.PojoReader.readData;
 import static workshop.jdi_common.entities.Users.DEFAULT;
 import static workshop.jdi_common.enums.ColorsEnum.Red;
 import static workshop.jdi_common.enums.DigitsEnum.EIGHT;
@@ -33,6 +35,12 @@ public class ElementsTests extends JdiTestsBase {
         // Open Metals & Colors page by Header menu
         headerMenu.select(METALS$COLORS);
         metalsColorsPage.checkOpened();
+    }
+
+
+    @Test public void go() {
+        List<Pojo> pogos = PojoReader.readWithGson(readData());
+        return;
     }
 
     @Test
