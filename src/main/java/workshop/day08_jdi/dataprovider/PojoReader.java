@@ -13,6 +13,7 @@ public class PojoReader {
 
     public static List<Pojo> readWithGson(String jsonString) {
 
+        // TODO no, changing the data file is completely prohibited.
         return new Gson()
                 .fromJson(jsonString, new TypeToken<ArrayList<Pojo>>(){}.getType() );
     }
