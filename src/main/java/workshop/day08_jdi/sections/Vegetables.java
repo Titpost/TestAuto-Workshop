@@ -8,7 +8,6 @@ import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.object
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.simple.Css;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import workshop.jdi_common.enums.VegetablesEnum;
 
 import java.util.List;
@@ -16,7 +15,7 @@ import java.util.List;
 
 public class Vegetables extends Section {
 
-    @FindBy(css = ".salad li label")
+    @Css(".salad li label")
     private ICheckList<VegetablesEnum> salads;
     @JDropdown(
             jroot = @JFindBy(css = ".salad"),

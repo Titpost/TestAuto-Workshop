@@ -10,7 +10,6 @@ import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JFindB
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JDropdown;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.simple.Css;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.FindBy;
 import workshop.day08_jdi.dataprovider.Pojo;
 import workshop.day08_jdi.sections.Summary;
 import workshop.day08_jdi.sections.Vegetables;
@@ -43,11 +42,11 @@ public class MetalsColorsPage extends WebPage {
             jvalue = @JFindBy(css = ".filter-option"))
     private IDropDown<ColorsEnum> colors;
 
-    @FindBy(css = "#elements-checklist p")
+    @Css("#elements-checklist p")
     private ICheckList<ElementsEnum> elements;
 
 
-    @FindBy(css = ".metals li span")
+    @Css(".metals li span")
     private IComboBox<MetalsEnum> metals = new ComboBox<>(
             By.cssSelector(".metals .caret"),
             By.cssSelector(".metals li span"),
