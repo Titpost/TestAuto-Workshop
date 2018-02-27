@@ -4,7 +4,6 @@
     <test name="Allure test 1"   >
         <classes>
             <class name="workshop.day04_05.Dates"/>
-            <class name="workshop.day04_05.MenuAndElements"/>
         </classes>
     </test>
 </suite>
