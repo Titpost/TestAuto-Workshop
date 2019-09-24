@@ -20,11 +20,13 @@ public class ElementsTests extends JdiTestsBase {
 
         // Login on JDI site as User
         header.loginAs(DEFAULT);
+        // TODO take a look on HW Scenario carefully, steps was missing...
     }
 
     @BeforeMethod
     public void gotoPage() {
         // Open Metals & Colors page by Header menu
+        // TODO this will work in case if you try to open any sub-menu pages...
         headerMenu.select(METALS$COLORS);
         metalsColorsPage.checkOpened();
     }
@@ -42,6 +44,7 @@ public class ElementsTests extends JdiTestsBase {
     @Test(dataProvider = "data")
     public void go(Pojo pogo) {
 
+        // TODO where is entity driving testing ?
         // Summary: 3, 8
         metalsColorsPage.selectSummary(pogo.summary);
 

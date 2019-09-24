@@ -123,26 +123,22 @@ public class MetalsColorsPage extends WebPage {
                             // there were no summary-check supplied within JSON file
                             //assertEquals(entry[1], "11");
                             break;
-
                         case "Elements" :
                             assertEquals(
                                     entry[result_value],
                                     pogo.elements.stream().collect(joining(", "))
                             );
                             break;
-
                         case "Color" :
                             if (!isEmpty(pogo.color)) {
                                 assertEquals(entry[result_value], pogo.color);
                             }
                             break;
-
                         case "Metal" :
                             if (!isEmpty(pogo.metals)) {
                                 assertEquals(entry[result_value], pogo.metals);
                             }
                             break;
-
                         case "Vegetables" :
                             assertEquals(
                                     entry[result_value],
